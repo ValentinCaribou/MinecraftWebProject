@@ -10,5 +10,10 @@
     "dev": "parcel --public-url / src/main/resources/app/index.html --out-dir target/classes/static",
     "build": "parcel build --public-url / src/main/resources/app/index.html --out-dir target/classes/static",
     "watch": "parcel watch --public-url / src/main/resources/app/index.html --out-dir target/classes/static --no-hmr"
+  },
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   }
 }
