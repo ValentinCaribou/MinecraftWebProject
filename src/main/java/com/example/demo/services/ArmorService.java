@@ -90,7 +90,7 @@ public class ArmorService {
     }
 
     /**
-     * update weapon
+     * update armor
      *
      * @param armor
      * @param id
@@ -146,7 +146,7 @@ public class ArmorService {
     }
 
     /**
-     * check informations of weapon
+     * check informations of armor
      *
      * @param donneeAVerifier
      * @param function

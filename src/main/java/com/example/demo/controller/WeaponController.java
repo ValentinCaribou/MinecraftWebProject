@@ -29,6 +29,12 @@ public class WeaponController {
         return this.weaponService.getAll();
     }
 
+    /**
+     * get one weapon
+     *
+     * @param id
+     * @return weapon or error list
+     */
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable("id") int id){
         IResult iResult = this.weaponService.getById(id);

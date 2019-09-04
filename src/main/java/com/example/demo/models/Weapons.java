@@ -6,8 +6,8 @@ public class Weapons extends Items {
     private int range;
     private int DPS;
 
-    public Weapons(int id, String nom, String categorie, int damage, int range, int DPS) {
-        super(id, nom, categorie);
+    public Weapons(int id, String nom, String categorie, String image, int damage, int range, int DPS) {
+        super(id, nom, categorie, image);
         this.damage = damage;
         this.range = range;
         this.DPS = DPS;
