@@ -1,0 +1,23 @@
+.personal-info{
+
+  select {
+    margin: 0;
+    border: 0 solid #E6E6E6;
+    border-bottom-width: 1px;
+    font-family: futura_md_btmedium, sans-serif;
+    color: #3DB8D8;
+    padding: 1px 1px 1.2px 0.25em;
+    background-color: white;
+    -webkit-appearance: none;
+    outline: none;
+    font-size: 1.26em;
+    width: 60%;
+    border-radius: 0;
+  }
+
+  select:focus{
+    border: 0 solid #3DB8D8;
+    border-bottom-width: 1px;
+    outline: none;
+  }
+}

@@ -1,6 +1,7 @@
 import {
     getArmorList,
-    getArmorById
+    getArmorById,
+    addArmor
 } from "../../services/gestionArmor";
 
 import action from "./action";
@@ -32,6 +33,22 @@ export const getArmor = (id) => {
                 }
             ).catch((error) => {
             console.log(error);
+            return Promise.reject(error);
+        })
+    }
+};
+
+export const ajoutArmor = (armor) => {
+    return (dispatch) => {
+        dispatch(action.setPending(true));
+        addArmor(armor)
+            .then(armor1 => {
+                    dispatch(action.setWeapon(armor));
+                    dispatch(action.setPending(false));
+                }
+            ).catch((error) => {
+            console.log(error);
+            dispatch(action.setPending(false));
             return Promise.reject(error);
         })
     }

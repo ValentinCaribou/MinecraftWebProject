@@ -1,0 +1,215 @@
+button {
+    font-size: 20px;
+    border: none;
+    text-align: center;
+}
+
+.back-button {
+    position: absolute;
+    z-index: 1;
+    left: 5px;
+    top: 5px;
+    font-size: 15px;
+    color: lightgrey;
+    background-color: transparent;
+}
+
+
+
+.chevron{
+    /*position: relative;*/
+    font-size: 20px;
+    font-weight: bold;
+    padding : 0 5px;
+    margin: auto;
+}
+.chevron.opened{
+    transform: rotateX(180deg);
+    transition-duration: 0.5s;
+}
+.chevron.closed{
+    transform: rotateX(0deg);
+    transition-duration: 0.5s;
+}
+
+.btn.btn-action{
+    border-radius: 3em;
+    padding: 0.5em 1em 0.5em 1em;
+    border: none;
+    -webkit-appearance: none;
+    height: auto;
+    font-size: 1.1em;
+}
+
+.btn-action.btn-border {
+    border-radius: 0 0.3em 0.3em 0;
+}
+
+.btn:focus, .bm-cross-button button:focus{
+    outline: none;
+}
+
+.btn:hover, .btn.btn-circle:hover{
+    opacity: 0.7;
+}
+
+.btn.btn-gestion-mission{
+    left:98.5%;
+    bottom: 2.8em;
+}
+
+.btn.bg-white{
+    color: black;
+    background-color: white;
+    opacity: 0.4;
+}
+
+.btn.btn-circle.bg-white{
+    border: 1px solid black;
+}
+
+.btn.bg-blue{
+    color: white;
+    background-color: #1068B0;
+}
+
+.btn.bg-aqua{
+    color: white;
+    background-color: #3DB8D8;
+}
+
+
+.btn.btn-circle.bg-blue, .btn.btn-circle.bg-aqua{
+    border: none;
+}
+
+.btn.size{
+    width: auto;
+    margin: auto;
+}
+
+.edit-button{
+    align-self: flex-end;
+    border-radius: 3em;
+}
+
+.btn .fa-edit{
+    left: 5px;
+    position: absolute;
+    top: 5px;
+}
+.btn .fa-plus{
+    font-size: 19px;
+    left: 7px;
+    position: absolute;
+    top: 6px;
+}
+
+.btn:disabled,
+.btn[disabled]
+{
+    cursor: not-allowed;
+}
+
+.btn, #label-file {
+    cursor: pointer;
+    font-family: futurabold, serif;
+    height: 35px;
+}
+
+.btn.btn-nav.bg-white:hover {
+    color: rgba(16,104,176,1);
+    opacity:1;
+}
+
+.btn.btn-circle {
+    display:flex;
+    justify-content: center;
+    justify-items: center;
+    position: relative;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin: 2px;
+}
+
+.btn.btn-circle i {
+    margin: inherit;
+}
+
+.btn.btn-supp {
+    padding-bottom: 9px;
+    line-height: 20px;
+    font-size: 24px;
+    font-family: futura_md_btmedium, serif;
+ }
+
+.btn.btn-cancel , .btn-action{
+    font-size: 16px;
+}
+
+.btn.btn-cancel {
+    color: #4978b9;
+    background-color: white;
+    border: #4978b9 2px solid;
+    padding: 2px 22px 3px 22px;
+    width: 115px;
+    border-radius: 25px;
+    font-size: 14px;
+}
+
+
+.btn.btn-valider {
+    color: white;
+    background-color: #3DB8D8;
+    border: #3DB8D8 2px solid;
+    padding: 2px 22px 3px 22px;
+    width: 115px;
+    border-radius: 25px;
+    font-size: 14px;
+}
+
+.btn.btn-creer {
+    color: white;
+    background-color: #3DB8D8;
+    border: #3DB8D8 2px solid;
+    padding: 2px 22px 3px 22px;
+    width: 200px;
+    border-radius: 25px;
+    font-size: 14px;
+}
+
+.btn.btn-valider.addmission {
+    margin-bottom: 15px;
+}
+
+.btn.btn-supprimer {
+    color: white;
+    background-color: #4978b9;
+    border: #4978b9 2px solid;
+    padding: 2px 13px 3px 13px;
+    border-radius: 25px;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.btn.btn-supprimer:hover, .btn.btn-cancel:hover{
+    background-color: #4978b9;
+    color: white;
+}
+
+.btn.btn-back {
+    font-size: 1.7em;
+}
+
+.btn.btn-cancel.btn-popup, .btn.btn-valider.btn-popup {
+    border-radius: 5px;
+}
+
+.btn.btn-slack {
+    font-family: futura_md_btmedium, sans-serif;
+    padding: 1px 12px 1px 12px;
+}
+
+
+

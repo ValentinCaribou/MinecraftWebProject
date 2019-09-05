@@ -11,7 +11,6 @@ function addScript() {
         }
         let script = document.createElement("script");
         script.src = `http://${process.env.URL_DEV}:35729/livereload.js`;
-        console.log(process.env.URL_DEV);
         document.body.appendChild(script);
         script.onload = (loadPage) => {
             ReactDOM
@@ -35,7 +34,6 @@ function addScript() {
             )
         ;
     }
-    console.log("test");
 }
 
 addScript();

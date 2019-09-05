@@ -1,0 +1,38 @@
+.div-info {
+  .nom-repas-container {
+    input {
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      color: #1068B0;
+      font-size: 2em;
+      flex-wrap: wrap;
+      margin: 0 auto;
+      text-transform: capitalize;
+      text-align: center;
+      -webkit-appearance: none;
+      outline: none;
+      border: 0 solid #e6e6e6;
+      border-bottom-width: 1.5px;
+      font-weight: bold;
+      font-family: futura_md_btmedium, sans-serif;
+      padding-bottom: 4px;
+    }
+
+    input:read-only, input:read-only:focus{
+      border: none;
+    }
+
+    input::placeholder {
+      opacity: 0.6;
+    }
+
+    input:focus{
+      outline: none;
+
+      border: 0 solid #3DB8D8;
+      border-bottom-width: 1.5px;
+    }
+  }
+}
+

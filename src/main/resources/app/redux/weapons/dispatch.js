@@ -1,6 +1,7 @@
 import {
     getWeaponList,
-    getWeaponById
+    getWeaponById,
+    addWeapon
 } from "../../services/gestionWeapon";
 
 import action from "./action";
@@ -34,4 +35,20 @@ export const getWeapon = (id) => {
             return Promise.reject(error);
         })
     }
-}
+};
+
+export const ajoutWeapon = (weapon) => {
+    return (dispatch) => {
+        dispatch(action.setPending(true));
+        addWeapon(weapon)
+            .then(weapon1 => {
+                dispatch(action.setWeapon(weapon));
+                dispatch(action.setPending(false));
+            }
+        ).catch((error) => {
+            console.log(error);
+            dispatch(action.setPending(false));
+            return Promise.reject(error);
+        })
+    }
+};

@@ -4,7 +4,7 @@ import {applyMiddleware, combineReducers, createStore} from 'redux';
 import armorsReducers from './redux/armors/reducers';
 import weaponsReducers from "./redux/weapons/reducers";
 // import toastReducer from "./redux/toast/reducers";
-// import Main from "./main"
+import Main from "./main"
 import thunk from 'redux-thunk';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
@@ -49,8 +49,7 @@ export default class App extends Component {
     render() {
         return(
             <Provider store={store}>
-                <h1>test</h1>
-                {/*<Main/>*/}
+                <Main/>
             </Provider>
         )
     }

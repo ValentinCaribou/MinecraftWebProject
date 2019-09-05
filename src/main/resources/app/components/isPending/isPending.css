@@ -1,0 +1,25 @@
+.is-pending {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    color: black;
+}
+
+.is-pending.in{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.3);
+    color: white;
+}
+
+.fas.fa-spin.fa-spinner{
+    position: fixed;
+    width: 48px;
+    height: 48px;
+    position: fixed;
+    top: 50%;
+    display: inline-block;
+    margin: auto;
+}

@@ -13,3 +13,15 @@ export function getWeaponById(id){
         .then(checkStatus)
         .then(response => response.json())
 }
+
+export function addWeapon(weapon){
+    return fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(weapon),
+        headers: {
+            'content-types':'application/json',
+        }
+    })
+        .then(checkStatus)
+        .then(response => response.json())
+}
