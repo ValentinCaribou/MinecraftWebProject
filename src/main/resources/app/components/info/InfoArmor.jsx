@@ -108,7 +108,7 @@ export class InfoArmor extends React.Component {
     };
 
     render() {
-        const {creatingArmors, verifFormatImage} = this.props;
+        const {creatingArmor, verifFormatImage} = this.props;
         const {newArmor, inEdit, isUpdated, isFormatPortrait, categorie} = this.state;
         return (
 
@@ -169,17 +169,17 @@ export class InfoArmor extends React.Component {
 
                     <div className="button-container">
                         {
-                            (!creatingArmors) &&
+                            (!creatingArmor) &&
                             <ConfirmButton callback={this.handleSubmitOnclick} label="Valider"/>
                         }
 
                         {
-                            (creatingArmors) &&
+                            (creatingArmor) &&
                             <AjoutButton callback={this.handleSubmitOnclick}/>
                         }
 
                         {
-                            (!creatingArmors) &&
+                            (!creatingArmor) &&
                             <CancelButton callback={this.handleCancelOnClick} label="Annuler"/>
                         }
                     </div>

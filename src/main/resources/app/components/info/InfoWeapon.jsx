@@ -45,10 +45,12 @@ export class InfoWeapon extends React.Component {
         const newWeapon = {...this.state.newWeapon};
         newWeapon[name] = value;
         this.setState({newWeapon, isUpdated: true});
+        console.log(newWeapon);
     };
 
     handleOnChange = (e) => {
         const target = e.currentTarget;
+        console.log(target.name, target.value);
         this.persistWeapon(target.name, target.value);
     };
 
@@ -153,7 +155,7 @@ export class InfoWeapon extends React.Component {
                         </div>
                     </label>
 
-                    <InputName name="name" className="nom-repas-container" value={newWeapon.nom}
+                    <InputName name="nom" className="nom-repas-container" value={newWeapon.nom}
                                placeholder="Nom de l'arme"
                                readOnly={!inEdit} onChange={this.handleOnChange} required/>
 
@@ -177,15 +179,15 @@ export class InfoWeapon extends React.Component {
                         boucle={categorie}
                     />
 
-                    <InputDiv name="Damage" label="Dégat :" type="text" readOnly={true}
+                    <InputDiv name="damage" label="Dégat :" type="text" readOnly={false}
                               value={newWeapon.damage}
                               onChange={this.handleOnChange} required/>
 
-                    <InputDiv name="Range" label="Porté de l'arme :" type="text" readOnly={true}
+                    <InputDiv name="range" label="Porté de l'arme :" type="text" readOnly={false}
                               value={newWeapon.range}
                               onChange={this.handleOnChange} required/>
 
-                    <InputDiv name="DPS" label="DPS :" type="text" readOnly={true}
+                    <InputDiv name="DPS" label="DPS :" type="text" readOnly={false}
                               value={newWeapon.DPS}
                               onChange={this.handleOnChange} required/>
 

@@ -9,9 +9,9 @@ const defaultWeapon = {
     nom: "",
     categorie: "",
     image: "",
-    damage: 0,
-    range: 0,
-    DPS: 0
+    damage: "",
+    range: "",
+    DPS:""
 };
 const TAILLE_IMAGE_MAX = 2000000;
 const HEIGHT_IMAGE_RATIO = 1.5;

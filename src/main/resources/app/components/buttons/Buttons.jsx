@@ -71,7 +71,7 @@ EditButton.propType = {
 export const ConfirmButton = ({callback, label}) => {
     return (
         <button
-            className="btn btn-valider"
+            className="buttonMinecraftPetit"
             onClick={callback}
         > {label} </button>
     )
@@ -84,7 +84,7 @@ ConfirmButton.propType = {
 export const CancelButton = ({callback, label}) => {
     return (
         <button
-            className="btn btn-cancel"
+            className="buttonMinecraftPetit"
             onClick={callback}
         > {label} </button>
     )
@@ -98,7 +98,7 @@ export const AjoutButton = ({callback}) => {
     return (
         <button
             type="submit"
-            className="btn btn-creer"
+            className="buttonMinecraft"
             onClick={callback}
         > Créer </button>
     )

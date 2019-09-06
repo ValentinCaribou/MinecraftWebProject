@@ -10,15 +10,13 @@ const InputSelect = ({label, type, className, boucle, valeurDefaut, ...others}) 
         <div className={className}>
             <span>{label}</span>
             <select {...others}>
-                <option value={1}>valeurDefaut</option>
-                {
-                    console.log(boucle)
-                }
+                <option value={1}>{valeurDefaut}</option>
                 {
                     boucle.map((value) =>
-                        value.libelle !== valeurDefaut &&
-                        <option value={value.id} key={value.id}>{value.libelle}
-                        </option>)
+                        value !== valeurDefaut &&
+                        <option value={value.id} key={value.id}>{value}
+                        </option>
+                    )
                 }
             </select>
         </div>
