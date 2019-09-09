@@ -3,10 +3,10 @@ package com.example.demo.models;
 public class Weapons extends Items {
 
     private int damage;
-    private int range;
+    private float range;
     private int DPS;
 
-    public Weapons(int id, String nom, String categorie, String image, int damage, int range, int DPS) {
+    public Weapons(int id, String nom, String categorie, String image, int damage, float range, int DPS) {
         super(id, nom, categorie, image);
         this.damage = damage;
         this.range = range;
@@ -21,11 +21,11 @@ public class Weapons extends Items {
         this.damage = damage;
     }
 
-    public int getRange() {
+    public float getRange() {
         return range;
     }
 
-    public void setRange(int range) {
+    public void setRange(float range) {
         this.range = range;
     }
 

@@ -45,12 +45,10 @@ export class InfoWeapon extends React.Component {
         const newWeapon = {...this.state.newWeapon};
         newWeapon[name] = value;
         this.setState({newWeapon, isUpdated: true});
-        console.log(newWeapon);
     };
 
     handleOnChange = (e) => {
         const target = e.currentTarget;
-        console.log(target.name, target.value);
         this.persistWeapon(target.name, target.value);
     };
 
@@ -73,9 +71,9 @@ export class InfoWeapon extends React.Component {
 
     getImage = (e) => {
         const files = e.currentTarget.files;
-        const {newRepas} = this.state;
+        const {newWeapon} = this.state;
         let reader = new FileReader();
-        let s = {...newRepas};
+        let s = {...newWeapon};
         if (files[0] !== undefined) {
             const imageName = files[0].name;
             if (files[0].size <= TAILLE_IMAGE_MAX) {
@@ -83,12 +81,12 @@ export class InfoWeapon extends React.Component {
                 reader.onload = (e) => {
                     s.image = e.target.result;
                     const i = new Image();
-                    i.src = newRepas.image;
+                    i.src = newWeapon.image;
                     let resultPortrait = false;
                     i.onload = function () {
                         resultPortrait = i.width <= i.height;
                     };
-                    this.setState({setIsFormatPortrait: resultPortrait, newRepas: s});
+                    this.setState({setIsFormatPortrait: resultPortrait, newWeapon: s});
                     this.props.updatePicture(s);
                 };
             } else {
@@ -110,12 +108,12 @@ export class InfoWeapon extends React.Component {
                             reader.onload = (e) => {
                                 s.image = e.target.result;
                                 const i = new Image();
-                                i.src = this.props.repas.image;
+                                i.src = this.props.weapons.image;
                                 let resultPortrait = false;
                                 i.onload = function () {
                                     resultPortrait = i.width <= i.height;
                                 };
-                                this.setState({setIsFormatPortrait: resultPortrait, newRepas: s});
+                                this.setState({setIsFormatPortrait: resultPortrait, newWeapon: s});
                                 this.props.updatePicture(s);
                             }
                         }, 'image/jpeg');
@@ -174,20 +172,20 @@ export class InfoWeapon extends React.Component {
                         type="text"
                         id="categorieItem"
                         name="categorie"
-                        valeurDefaut="Arme"
+                        valeurDefaut="-- Sélectionner une catégorie --"
                         onChange={this.handleOnChange}
                         boucle={categorie}
                     />
 
-                    <InputDiv name="damage" label="Dégat :" type="text" readOnly={false}
+                    <InputDiv name="damage" label="Dégat :" type="number" readOnly={false}
                               value={newWeapon.damage}
                               onChange={this.handleOnChange} required/>
 
-                    <InputDiv name="range" label="Porté de l'arme :" type="text" readOnly={false}
+                    <InputDiv name="range" label="Porté de l'arme :" type="number" readOnly={false}
                               value={newWeapon.range}
                               onChange={this.handleOnChange} required/>
 
-                    <InputDiv name="DPS" label="DPS :" type="text" readOnly={false}
+                    <InputDiv name="DPS" label="DPS :" type="number" readOnly={false}
                               value={newWeapon.DPS}
                               onChange={this.handleOnChange} required/>
 

@@ -19,7 +19,7 @@ export function addWeapon(weapon){
         method: 'POST',
         body: JSON.stringify(weapon),
         headers: {
-            'content-types':'application/json',
+            'Content-Type': 'application/json',
         }
     })
         .then(checkStatus)
