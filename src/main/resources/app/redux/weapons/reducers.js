@@ -10,6 +10,7 @@ const defaultState = {
         range:0,
         DPS:0
     },
+    weapons: [],
     isPending: false
 };
 

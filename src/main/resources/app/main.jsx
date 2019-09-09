@@ -5,6 +5,7 @@ import { slide as Menu } from 'react-burger-menu';
 import {connect} from 'react-redux';
 import addWeapons from "./pages/addWeapon";
 import addArmors from "./pages/addArmors";
+import Home from "./pages/home/home";
 import './index.css';
 
 class Main extends Component {
@@ -48,7 +49,7 @@ class Main extends Component {
                 <main>
                     <Router>
                         <Switch>
-                            {/*<Route exact path="/" component={Home}/>*/}
+                            <Route exact path="/" component={Home}/>
                             <Route exact path="/armes/add" component={addWeapons}/>
                             <Route exact path="/armures/add" component={addArmors}/>
                             {/*<Route exact path="/armes/:id" component={Armes}/>*/}
