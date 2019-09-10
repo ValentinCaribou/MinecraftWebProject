@@ -3,15 +3,20 @@ import Item from './item/item';
 import IsPending from "../../components/isPending/isPending";
 import weaponsReducers from "../../redux/weapons/reducers";
 import {connect} from "react-redux";
+import './liste.scss'
+import {getWeapons} from "../../redux/weapons/dispatch";
 
 class ListeItems extends Component {
     constructor(props) {
         super(props);
     }
 
+    componentDidMount() {
+        this.props.dispatch(getWeapons());
+    }
+
     render() {
-        const {listeItem, isLoading} = this.props;
-        console.log(this.props);
+        const {weapons, isLoading} = this.props;
         return (
             <div className="table-search">
                 <div className="list-repas">
@@ -23,12 +28,12 @@ class ListeItems extends Component {
                             (<>
                                     <section className="card">
                                         {
-                                            listeItem !== undefined &&
-                                                listeItem.length > 0 ?
-                                                    listeItem.map((item) => {
+                                            weapons !== undefined &&
+                                            weapons.length > 0 ?
+                                                weapons.map((item) => {
                                                         return <Item key={item.id}
                                                                            dispatch={this.props.dispatch}
-                                                                           repas={item}/>
+                                                                           item={item}/>
                                                     })
                                                     :
                                                     <div className="container-white no-results"> Aucun résultat trouvé !</div>
@@ -46,6 +51,7 @@ class ListeItems extends Component {
 const mapStateToProps = (state) => {
     return {
         isLoading: state.weaponsReducers.isLoading,
+        weapons: state.weaponsReducers.weapons,
     }
 };
 

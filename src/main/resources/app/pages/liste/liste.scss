@@ -1,0 +1,139 @@
+.list-repas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  .repas-pending {
+    //color: white;
+  }
+
+  .card {
+    min-width: 100%;
+    min-height: 200px;
+    display: flex;
+    overflow: scroll;
+  }
+
+  .repas-unique {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 8px;
+    height: 8em;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 0.31em 0.937em;
+    margin: 1em;
+    font-family: MinecraftiaRegular, sans-serif;
+    //box-shadow: 0 0 30px 0 rgba(160, 160, 160, 0.6);
+
+    .container-image {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 1em;
+
+      .rounded-image-repas {
+        overflow: hidden;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        border: 1px solid gray;
+        display: flex;
+        align-items: center;
+
+        .image-repas {
+          width: 102%;
+          height: auto;
+        }
+      }
+    }
+
+    .container-informations {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 100%;
+      padding: 5px 5px 5px 5px;
+      overflow: hidden;
+
+      .nom-repas {
+        color: #4978B9;
+      }
+    }
+  }
+
+  .repas-du-jour {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 8px;
+    padding: 0.31em 0;
+    margin: 1em 0;
+    font-family: MinecraftiaRegular, sans-serif;
+
+    .titre-jour {
+      display: flex;
+      color: white;
+      font-size: 1.5em;
+    }
+
+    .plat-du-jour {
+      display: flex;
+    }
+  }
+
+  .no-results {
+    font-size: 1em;
+    color: black;
+    font-family: MinecraftiaRegular, sans-serif;
+    text-align: center;
+  }
+
+}
+
+@media screen and (min-width: 800px) {
+  .nom-repas {
+    font-size: calc(12px + 0.5vw);
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  .repas-unique {
+    width: 19vw;
+  }
+}
+
+@media screen and (min-width: 1350px) and (max-width: 1700px) {
+  .repas-unique {
+    width: 22vw;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 1350px) {
+  .repas-unique {
+    width: 30vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .list-repas, .repas-du-jour {
+    a {
+      width: 100%;
+      max-width: 600px;
+
+    }
+  }
+
+  .nom-prenom {
+    font-size: 1.2em;
+  }
+
+}

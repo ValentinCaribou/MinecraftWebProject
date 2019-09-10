@@ -3,28 +3,17 @@ package com.example.demo.models;
 import org.springframework.data.annotation.Id;
 
 public abstract class Items {
-    @Id
-    private int id;
     private String nom;
     private String categorie;
     private String image;
 
-    public Items(int id, String nom, String categorie, String image) {
-        this.id = id;
+    public Items(String nom, String categorie, String image) {
         this.nom = nom;
         this.categorie = categorie;
         this.image = image;
     }
 
     public Items() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNom() {

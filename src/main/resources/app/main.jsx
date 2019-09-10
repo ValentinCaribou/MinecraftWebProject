@@ -7,6 +7,7 @@ import addWeapons from "./pages/addWeapon";
 import addArmors from "./pages/addArmors";
 import Home from "./pages/home/home";
 import './index.css';
+import Item from "./pages/fiche/Item";
 
 class Main extends Component {
 
@@ -34,6 +35,9 @@ class Main extends Component {
 
                     <span />
 
+                    <a id="listeArme" className="bm-item menu-item" href="/"><i className="fas fa-list-ul"/> Liste des
+                        items</a>
+
                     <a id="listeArme" className="bm-item menu-item" href="/armes"><i className="fas fa-list-ul"/> Liste des
                         Armes</a>
 
@@ -52,7 +56,7 @@ class Main extends Component {
                             <Route exact path="/" component={Home}/>
                             <Route exact path="/armes/add" component={addWeapons}/>
                             <Route exact path="/armures/add" component={addArmors}/>
-                            {/*<Route exact path="/armes/:id" component={Armes}/>*/}
+                            <Route exact path="/armes/:id" component={Item}/>
                             {/*<Route exact path="/armures/:id" component={Armures}/>*/}
                             {/*<Route component={Error404}/>*/}
                         </Switch>

@@ -52,3 +52,19 @@ export const ajoutWeapon = (weapon) => {
         })
     }
 };
+
+export const updateWeapon = (weapon) => {
+    return (dispatch) => {
+        dispatch(action.setPending(true));
+        addWeapon(weapon)
+            .then(weapon1 => {
+                    dispatch(action.setWeapon(weapon));
+                    dispatch(action.setPending(false));
+                }
+            ).catch((error) => {
+            console.log(error);
+            dispatch(action.setPending(false));
+            return Promise.reject(error);
+        })
+    }
+};

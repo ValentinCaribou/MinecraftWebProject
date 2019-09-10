@@ -19,7 +19,7 @@ class Item extends Component {
 
     verifFormatImage() {
         let i = new Image();
-        i.src = this.props.repas.image;
+        i.src = this.props.item.image;
         i.onload = function () {
             if (i.width > i.height) {
                 // this.setState({setIsFormatPortrait:false})
@@ -28,7 +28,7 @@ class Item extends Component {
     };
 
     render() {
-        const { item } = this.props;
+        const {item} = this.props;
 
         return (
             <Link to={{

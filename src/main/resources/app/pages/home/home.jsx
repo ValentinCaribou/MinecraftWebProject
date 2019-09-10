@@ -20,7 +20,7 @@ class Home extends React.Component {
 const
     mapStateToProps = (state) => {
         return {
-            listeWeapon: state.weaponsReducers.listeWeapon,
+            weapons: state.weaponsReducers.weapons,
             isPending:state.weaponsReducers.isPending,
         }
     };

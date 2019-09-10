@@ -2,7 +2,7 @@ import types from "./types";
 
 const defaultState = {
     weapon: {
-        id:0,
+        id:'',
         nom:'',
         categorie:'',
         image:'',

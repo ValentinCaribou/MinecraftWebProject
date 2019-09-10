@@ -1,16 +1,32 @@
 package com.example.demo.models;
 
+import org.springframework.data.annotation.Id;
+
 public class Weapons extends Items {
 
+    @Id
+    private String id;
     private int damage;
     private float range;
     private int DPS;
 
-    public Weapons(int id, String nom, String categorie, String image, int damage, float range, int DPS) {
-        super(id, nom, categorie, image);
+    public Weapons(String nom, String categorie, String image, int damage, float range, int DPS) {
+        super(nom, categorie, image);
         this.damage = damage;
         this.range = range;
         this.DPS = DPS;
+    }
+
+    public Weapons(String nom, String categorie, String image, String id, int damage, float range, int DPS) {
+        super(nom, categorie, image);
+        this.id = id;
+        this.damage = damage;
+        this.range = range;
+        this.DPS = DPS;
+    }
+
+    public Weapons() {
+
     }
 
     public int getDamage() {
@@ -35,5 +51,25 @@ public class Weapons extends Items {
 
     public void setDPS(int DPS) {
         this.DPS = DPS;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Weapons{" +
+                "id=" + id +
+                ", nom=" + getNom() +
+                ", categorie=" + getCategorie() +
+                ", damage=" + damage +
+                ", range=" + range +
+                ", DPS=" + DPS +
+                '}';
     }
 }
