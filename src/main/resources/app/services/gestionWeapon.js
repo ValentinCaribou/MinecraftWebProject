@@ -15,7 +15,6 @@ export function getWeaponById(id){
 }
 
 export function addWeapon(weapon){
-    console.log(weapon);
     return fetch(url, {
         method: 'POST',
         body: JSON.stringify(weapon),

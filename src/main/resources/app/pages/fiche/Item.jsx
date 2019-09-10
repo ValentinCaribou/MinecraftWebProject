@@ -30,9 +30,6 @@ class Item extends Component {
     render() {
         let {weapon, isLoading, dispatch} = this.props;
         const {inAdd} = this.state;
-
-        console.log(weapon);
-
         return (
             <>
                 <div id="white-pattern"></div>
