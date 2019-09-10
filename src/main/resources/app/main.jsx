@@ -8,12 +8,13 @@ import addArmors from "./pages/addArmors";
 import Home from "./pages/home/home";
 import './index.css';
 import Item from "./pages/fiche/Item";
+import Toast from "./components/toast";
 
 class Main extends Component {
 
     render() {
 
-        const {dispatch} = this.props;
+        const {dispatch, toast} = this.props;
 
         return (
             <div id="body">
@@ -22,6 +23,13 @@ class Main extends Component {
                         <h1>Minecraft Web Project</h1>
                     </div>
                 </header>
+
+                {
+                    toast &&
+                    <Toast type={toast.type} message={toast.message} timeout={toast.timeout}
+                           closeCallback={toast.closeCallback}
+                           dispatch={dispatch}/>
+                }
 
                 <Menu pageWrapId="page-wrap" width="auto"
                       menuClassName="my-menu"
@@ -69,7 +77,7 @@ class Main extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        // toast: state.toastReducer.toast,
+        toast: state.toastReducer.toast,
     }
 };
 

@@ -3,7 +3,7 @@ import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import armorsReducers from './redux/armors/reducers';
 import weaponsReducers from "./redux/weapons/reducers";
-// import toastReducer from "./redux/toast/reducers";
+import toastReducer from "./redux/toast/reducers";
 import Main from "./main"
 import thunk from 'redux-thunk';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -36,7 +36,7 @@ Array.prototype.empty = function(){
 const reducer = combineReducers({
     armorsReducers,
     weaponsReducers,
-    // toastReducer,
+    toastReducer,
 });
 
 const store = createStore(

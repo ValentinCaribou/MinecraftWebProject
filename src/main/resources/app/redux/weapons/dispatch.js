@@ -5,6 +5,7 @@ import {
 } from "../../services/gestionWeapon";
 
 import action from "./action";
+import {balanceTonToast} from "../toast/dispatch";
 
 export const getWeapons = () => {
     return (dispatch) => {
@@ -44,10 +45,12 @@ export const ajoutWeapon = (weapon) => {
             .then(weapon1 => {
                 dispatch(action.setWeapon(weapon));
                 dispatch(action.setPending(false));
+                dispatch(balanceTonToast("success", "Ajout réussi"));
             }
         ).catch((error) => {
             console.log(error);
             dispatch(action.setPending(false));
+            dispatch(balanceTonToast("success", "Erreur lors de l'ajout"));
             return Promise.reject(error);
         })
     }
@@ -60,10 +63,12 @@ export const updateWeapon = (weapon) => {
             .then(weapon1 => {
                     dispatch(action.setWeapon(weapon));
                     dispatch(action.setPending(false));
+                    dispatch(balanceTonToast("success", "Modification réussi"));
                 }
             ).catch((error) => {
             console.log(error);
             dispatch(action.setPending(false));
+            dispatch(balanceTonToast("error", "Erreur lors de la modification"));
             return Promise.reject(error);
         })
     }
