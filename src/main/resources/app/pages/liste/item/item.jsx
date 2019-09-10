@@ -32,7 +32,7 @@ class Item extends Component {
 
         return (
             <Link to={{
-                pathname: `/repas/${item.id}`,
+                pathname: `/armes/${item.id}`,
             }}>
                 <div key={item.id} className="repas-unique">
                     <div className="container-image">
