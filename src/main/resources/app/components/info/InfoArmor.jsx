@@ -23,6 +23,12 @@ export class InfoArmor extends React.Component {
         this.persistArmor = this.persistArmor.bind(this);
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps !== this.props){
+            this.setState({newArmor: {...this.props.armors}})
+        }
+    }
+
     persistArmor = (name, value) => {
         const newArmor = {...this.state.newArmor};
         newArmor[name] = value;
@@ -53,9 +59,9 @@ export class InfoArmor extends React.Component {
 
     getImage = (e) => {
         const files = e.currentTarget.files;
-        const {newRepas} = this.state;
+        const {newArmor} = this.state;
         let reader = new FileReader();
-        let s = {...newRepas};
+        let s = {...newArmor};
         if (files[0] !== undefined) {
             const imageName = files[0].name;
             if (files[0].size <= TAILLE_IMAGE_MAX) {
@@ -63,13 +69,13 @@ export class InfoArmor extends React.Component {
                 reader.onload = (e) => {
                     s.image = e.target.result;
                     const i = new Image();
-                    i.src = newRepas.image;
+                    i.src = newArmor.image;
                     let resultPortrait = false;
                     i.onload = function () {
                         resultPortrait = i.width <= i.height;
                     };
-                    this.setState({setIsFormatPortrait: resultPortrait, newRepas: s});
-                    this.props.updatePicture(s);
+                    this.setState({setIsFormatPortrait: resultPortrait, newArmor: s});
+                    // this.props.updatePicture(s);
                 };
             } else {
                 reader.onload = (e) => {
@@ -90,13 +96,13 @@ export class InfoArmor extends React.Component {
                             reader.onload = (e) => {
                                 s.image = e.target.result;
                                 const i = new Image();
-                                i.src = this.props.repas.image;
+                                i.src = this.props.armors.image;
                                 let resultPortrait = false;
                                 i.onload = function () {
                                     resultPortrait = i.width <= i.height;
                                 };
-                                this.setState({setIsFormatPortrait: resultPortrait, newRepas: s});
-                                this.props.updatePicture(s);
+                                this.setState({setIsFormatPortrait: resultPortrait, newArmor: s});
+                                // this.props.updatePicture(s);
                             }
                         }, 'image/jpeg');
                     }
@@ -135,7 +141,7 @@ export class InfoArmor extends React.Component {
                         </div>
                     </label>
 
-                    <InputName name="name" className="nom-repas-container" value={newArmor.nom}
+                    <InputName name="nom" className="nom-repas-container" value={newArmor.nom}
                                placeholder="Nom de l'armure"
                                readOnly={!inEdit} onChange={this.handleOnChange} required/>
 
@@ -159,17 +165,17 @@ export class InfoArmor extends React.Component {
                         boucle={categorie}
                     />
 
-                    <InputDiv name="Damage" label="resistance :" type="text" readOnly={true}
+                    <InputDiv name="resistance" label="resistance :" type="number" readOnly={!inEdit}
                               value={newArmor.resistance}
                               onChange={this.handleOnChange} required/>
 
-                    <InputDiv name="Range" label="Point de défence :" type="text" readOnly={true}
+                    <InputDiv name="pointOfDefense" label="Point de défence :" type="number" readOnly={!inEdit}
                               value={newArmor.pointOfDefense}
                               onChange={this.handleOnChange} required/>
 
                     <div className="button-container">
                         {
-                            (!creatingArmor) &&
+                            (!creatingArmor && inEdit && isUpdated) &&
                             <ConfirmButton callback={this.handleSubmitOnclick} label="Valider"/>
                         }
 
@@ -179,7 +185,7 @@ export class InfoArmor extends React.Component {
                         }
 
                         {
-                            (!creatingArmor) &&
+                            (!creatingArmor && inEdit && isUpdated) &&
                             <CancelButton callback={this.handleCancelOnClick} label="Annuler"/>
                         }
                     </div>

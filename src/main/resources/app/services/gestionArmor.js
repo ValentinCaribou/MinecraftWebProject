@@ -19,7 +19,7 @@ export function addArmor(armor){
         method: 'POST',
         body: JSON.stringify(armor),
         headers: {
-            'content-types':'application/json',
+            'Content-Type':'application/json',
         }
     })
         .then(checkStatus)

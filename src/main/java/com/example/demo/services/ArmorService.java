@@ -69,12 +69,13 @@ public class ArmorService {
     @Transactional
     public IResult<Armors, List<String>> save(Armors armors, boolean verif){
         LOGGER.info("Add new Armors");
+        System.out.println(armors);
         List<String> errorList = Collections.emptyList();
         if (!verif){
             errorList.addAll(validateArmor(armors));
         }
-        checkGenerique(armors.getId(), weapon -> armorRepo.findById(weapon).isPresent(), CodeErreurAppli.XBB)
-                .ifPresent((codeError) -> errorList.add(codeError));
+//        checkGenerique(armors.getId(), weapon -> armorRepo.findById(weapon).isPresent(), CodeErreurAppli.XBB)
+//                .ifPresent((codeError) -> errorList.add(codeError));
 
         Function<Armors, Armors> function = (armors1) -> {
             if (armors1.getImage() != null) {

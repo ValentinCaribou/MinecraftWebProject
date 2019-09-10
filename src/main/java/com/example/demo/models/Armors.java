@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 
 public class Armors extends Items {
     @Id
-    private int id;
+    private String id;
     private int resistance;
     private int pointOfDefense;
 
@@ -14,18 +14,22 @@ public class Armors extends Items {
         this.pointOfDefense = pointOfDefense;
     }
 
-    public Armors(String nom, String categorie, String image, int id, int resistance, int pointOfDefense) {
+    public Armors(String nom, String categorie, String image, String id, int resistance, int pointOfDefense) {
         super(nom, categorie, image);
         this.id = id;
         this.resistance = resistance;
         this.pointOfDefense = pointOfDefense;
     }
 
-    public int getId() {
+    public Armors() {
+
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -50,7 +54,6 @@ public class Armors extends Items {
         return "Armors{" +
                 "id=" + id +
                 ", nom=" + getNom() +
-                ", image=" + getImage() +
                 ", resistance=" + resistance +
                 ", pointOfDefense=" + pointOfDefense +
                 '}';
