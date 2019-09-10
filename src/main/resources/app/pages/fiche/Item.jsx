@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import './item.scss'
 import IsPending from "../../components/isPending/isPending";
 import {InfoWeapon} from "../../components/info/InfoWeapon";
-import {updateWeapon} from "../../redux/weapons/dispatch";
+import {updateWeapon,getWeapon} from "../../redux/weapons/dispatch";
 
 
 class Item extends Component {
@@ -19,6 +19,10 @@ class Item extends Component {
         };
     }
 
+    componentDidMount() {
+        this.props.dispatch(getWeapon(this.props.match.params.id));
+    }
+
     updateWeapon = (weapon) => {
         this.props.dispatch(updateWeapon(weapon))
     };
@@ -26,6 +30,8 @@ class Item extends Component {
     render() {
         let {weapon, isLoading, dispatch} = this.props;
         const {inAdd} = this.state;
+
+        console.log(weapon);
 
         return (
             <>
@@ -42,7 +48,6 @@ class Item extends Component {
                                         dispatch={this.props.dispatch}
                                         weapons={weapon}
                                         isFormatPortrait={this.state.isFormatPortrait}
-                                        // getImage={this.getImage}
                                         updateWeapon={this.updateWeapon}
                                         creatingWeapon={false}
                                     />

@@ -18,27 +18,15 @@ export class InfoWeapon extends React.Component {
             inEdit: this.props.creatingWeapon,
             isFormatPortrait: true,
             isUpdated: false,
-            // categorie:{
-            //     Arme:{
-            //         id:1,
-            //         libelle:"Arme"
-            //     },
-            //     Armure:{
-            //         id:2,
-            //         libelle:"Armure"
-            //     },
-            //     Outil:{
-            //         id:3,
-            //         libelle:"Outil"
-            //     },
-            //     Bloc:{
-            //         id:4,
-            //         libelle:"Bloc"
-            //     }
-            // }
             categorie:['Arme', 'Armure', 'Outil', 'Bloc']
         };
         this.persistWeapon = this.persistWeapon.bind(this);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps !== this.props){
+            this.setState({newWeapon: {...this.props.weapons}})
+        }
     }
 
     persistWeapon = (name, value) => {
@@ -128,6 +116,8 @@ export class InfoWeapon extends React.Component {
     render() {
         const {creatingWeapon, verifFormatImage} = this.props;
         const {newWeapon, inEdit, isUpdated, isFormatPortrait, categorie} = this.state;
+        console.log(this.props.weapons);
+        console.log(newWeapon);
         return (
 
             <>

@@ -48,11 +48,11 @@ public class WeaponService {
      * @param id
      * @return response entity with weapon or a list of error
      */
-    public IResult<Weapons, List<String>> getById(int id){
+    public IResult<Weapons, List<String>> getById(String id){
         List<String> errors = new ArrayList<>();
         Optional<Weapons> weapon = this.weaponRepo.findById(id);
 
-        if (id == 0 || !weapon.isPresent()) {
+        if (!weapon.isPresent()) {
             String message = "Id not found";
             errors.add(message);
         }
