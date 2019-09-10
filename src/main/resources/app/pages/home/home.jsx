@@ -21,6 +21,7 @@ const
     mapStateToProps = (state) => {
         return {
             weapons: state.weaponsReducers.weapons,
+            armors: state.armorsReducers.armors,
             isPending:state.weaponsReducers.isPending,
         }
     };
