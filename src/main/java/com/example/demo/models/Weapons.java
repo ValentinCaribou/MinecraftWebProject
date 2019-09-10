@@ -8,16 +8,16 @@ public class Weapons extends Items {
     private String id;
     private int damage;
     private float range;
-    private int DPS;
+    private float DPS;
 
-    public Weapons(String nom, String categorie, String image, int damage, float range, int DPS) {
+    public Weapons(String nom, String categorie, String image, int damage, float range, float DPS) {
         super(nom, categorie, image);
         this.damage = damage;
         this.range = range;
         this.DPS = DPS;
     }
 
-    public Weapons(String nom, String categorie, String image, String id, int damage, float range, int DPS) {
+    public Weapons(String nom, String categorie, String image, String id, int damage, float range, float DPS) {
         super(nom, categorie, image);
         this.id = id;
         this.damage = damage;
@@ -45,11 +45,11 @@ public class Weapons extends Items {
         this.range = range;
     }
 
-    public int getDPS() {
+    public float getDPS() {
         return DPS;
     }
 
-    public void setDPS(int DPS) {
+    public void setDPS(float DPS) {
         this.DPS = DPS;
     }
 

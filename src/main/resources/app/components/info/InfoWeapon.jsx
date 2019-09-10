@@ -75,7 +75,7 @@ export class InfoWeapon extends React.Component {
                         resultPortrait = i.width <= i.height;
                     };
                     this.setState({setIsFormatPortrait: resultPortrait, newWeapon: s});
-                    this.props.updatePicture(s);
+                    // this.props.updatePicture(s);
                 };
             } else {
                 reader.onload = (e) => {
@@ -102,7 +102,7 @@ export class InfoWeapon extends React.Component {
                                     resultPortrait = i.width <= i.height;
                                 };
                                 this.setState({setIsFormatPortrait: resultPortrait, newWeapon: s});
-                                this.props.updatePicture(s);
+                                // this.props.updatePicture(s);
                             }
                         }, 'image/jpeg');
                     }
@@ -116,8 +116,6 @@ export class InfoWeapon extends React.Component {
     render() {
         const {creatingWeapon, verifFormatImage} = this.props;
         const {newWeapon, inEdit, isUpdated, isFormatPortrait, categorie} = this.state;
-        console.log(this.props.weapons);
-        console.log(newWeapon);
         return (
 
             <>
@@ -167,21 +165,21 @@ export class InfoWeapon extends React.Component {
                         boucle={categorie}
                     />
 
-                    <InputDiv name="damage" label="Dégat :" type="number" readOnly={false}
+                    <InputDiv name="damage" label="Dégat :" type="number" readOnly={!inEdit}
                               value={newWeapon.damage}
                               onChange={this.handleOnChange} required/>
 
-                    <InputDiv name="range" label="Porté de l'arme :" type="number" readOnly={false}
+                    <InputDiv name="range" label="Porté de l'arme :" type="number" readOnly={!inEdit}
                               value={newWeapon.range}
                               onChange={this.handleOnChange} required/>
 
-                    <InputDiv name="DPS" label="DPS :" type="number" readOnly={false}
-                              value={newWeapon.DPS}
+                    <InputDiv name="dps" label="DPS :" type="number" readOnly={!inEdit}
+                              value={newWeapon.dps}
                               onChange={this.handleOnChange} required/>
 
                     <div className="button-container">
                         {
-                            (!creatingWeapon) &&
+                            (!creatingWeapon && inEdit && isUpdated) &&
                             <ConfirmButton callback={this.handleSubmitOnclick} label="Valider"/>
                         }
 
@@ -191,7 +189,7 @@ export class InfoWeapon extends React.Component {
                         }
 
                         {
-                            (!creatingWeapon) &&
+                            (!creatingWeapon && inEdit && isUpdated) &&
                             <CancelButton callback={this.handleCancelOnClick} label="Annuler"/>
                         }
                     </div>
