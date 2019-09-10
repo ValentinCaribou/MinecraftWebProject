@@ -8,6 +8,7 @@ import addArmors from "./pages/addArmors";
 import Home from "./pages/home/home";
 import './index.css';
 import Item from "./pages/fiche/Item";
+import ItemArmor from "./pages/fiche/ItemArmor";
 import Toast from "./components/toast";
 
 class Main extends Component {
@@ -65,7 +66,7 @@ class Main extends Component {
                             <Route exact path="/armes/add" component={addWeapons}/>
                             <Route exact path="/armures/add" component={addArmors}/>
                             <Route exact path="/armes/:id" component={Item}/>
-                            {/*<Route exact path="/armures/:id" component={Armures}/>*/}
+                            <Route exact path="/armure/:id" component={ItemArmor}/>
                             {/*<Route component={Error404}/>*/}
                         </Switch>
                     </Router>

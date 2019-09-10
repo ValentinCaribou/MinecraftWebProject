@@ -37,7 +37,7 @@ public class ArmorController {
      * @return armor or error list
      */
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable("id") int id){
+    public ResponseEntity<?> getById(@PathVariable("id") String id){
         IResult iResult = armorService.getById(id);
         return getResponseEntity(iResult);
     }

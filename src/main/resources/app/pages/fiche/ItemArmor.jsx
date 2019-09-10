@@ -3,7 +3,7 @@ import {AddButton, BackButtonArrow, RemoveButton} from "../../components/buttons
 import {connect} from "react-redux";
 import './item.scss'
 import IsPending from "../../components/isPending/isPending";
-import {InfoWeapon} from "../../components/info/InfoWeapon";
+import {InfoArmor} from "../../components/info/InfoArmor";
 import {updateWeapon,getWeapon} from "../../redux/weapons/dispatch";
 import {getArmor} from "../../redux/armors/dispatch";
 
@@ -21,7 +21,6 @@ class Item extends Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(getWeapon(this.props.match.params.id));
         this.props.dispatch(getArmor(this.props.match.params.id));
     }
 
@@ -30,9 +29,8 @@ class Item extends Component {
     };
 
     render() {
-        let {weapon, isLoading, dispatch, armor} = this.props;
+        let {isLoading, dispatch, armor} = this.props;
         const {inAdd} = this.state;
-        console.log(this.props);
         return (
             <>
                 <div id="white-pattern"></div>
@@ -45,10 +43,10 @@ class Item extends Component {
                                 <div className="repas-fiche container-white responsive-witdh-fiche">
                                     <BackButtonArrow/>
                                     {
-                                        weapon !== undefined &&
-                                        <InfoWeapon
+                                        armor !== undefined &&
+                                        <InfoArmor
                                             dispatch={this.props.dispatch}
-                                            weapons={weapon}
+                                            armors={armor}
                                             isFormatPortrait={this.state.isFormatPortrait}
                                             updateWeapon={this.updateWeapon}
                                             creatingWeapon={false}

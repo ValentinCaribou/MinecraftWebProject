@@ -25,10 +25,17 @@ class Item extends Component {
 
     render() {
         const {item} = this.props;
+        let url = "";
+        const categorie = item.categorie;
+        if (categorie === "Arme"){
+            url = "armes"
+        } else if(categorie === "Armure"){
+            url = "armure"
+        }
 
         return (
             <Link to={{
-                pathname: `/armes/${item.id}`,
+                pathname: `/${url}/${item.id}`,
             }}>
                 <div key={item.id} className="repas-unique">
                     <div className="container-image">

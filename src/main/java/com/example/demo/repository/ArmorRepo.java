@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ArmorRepo extends MongoRepository<Armors, Integer> {
+public interface ArmorRepo extends MongoRepository<Armors, String> {
     Optional<Armors> findByNom(String nom);
 }
