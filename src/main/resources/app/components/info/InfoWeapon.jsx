@@ -37,7 +37,6 @@ export class InfoWeapon extends React.Component {
         const newWeapon = {...this.state.newWeapon};
         newWeapon[name] = value;
         if (name === "damage"){
-            console.log("dégat");
             this.transformeNumber(value);
         }
         this.setState({newWeapon, isUpdated: true});
@@ -63,6 +62,7 @@ export class InfoWeapon extends React.Component {
     handleCancelOnClick = () => {
         const weapons = {...this.props.weapons};
         this.setState({newWeapon: weapons, inEdit: false});
+        this.transformeNumber(this.props.weapons.damage);
     };
 
     transformeNumber = (number) => {
