@@ -36,6 +36,10 @@ export class InfoWeapon extends React.Component {
     persistWeapon = (name, value) => {
         const newWeapon = {...this.state.newWeapon};
         newWeapon[name] = value;
+        if (name === "damage"){
+            console.log("dégat");
+            this.transformeNumber(value);
+        }
         this.setState({newWeapon, isUpdated: true});
     };
 
@@ -63,7 +67,6 @@ export class InfoWeapon extends React.Component {
 
     transformeNumber = (number) => {
         let nombreFinal = number;
-        console.log(number);
         if (number !== 0){
             if (number%2 === 0){
                 nombreFinal = number / 2;
@@ -76,7 +79,6 @@ export class InfoWeapon extends React.Component {
                 this.setState({impair: true});
             }
         }
-        console.log(nombreFinal);
     };
 
     getImage = (e) => {
@@ -169,12 +171,6 @@ export class InfoWeapon extends React.Component {
 
                 </div>
                 <div className="personal-info">
-                    {
-                        !inEdit &&
-                        <div className="action-modif-profil">
-                            <EditButton callback={this.handleEditOnClick}/>
-                        </div>
-                    }
 
                     <SelectInput
                         className="input-div"
@@ -213,7 +209,14 @@ export class InfoWeapon extends React.Component {
                         }
 
                         {
-                            (!creatingWeapon && inEdit && isUpdated) &&
+                            !inEdit &&
+                            // <div className="action-modif-profil">
+                                <EditButton callback={this.handleEditOnClick}/>
+                            //</div>
+                        }
+
+                        {
+                            (!creatingWeapon && inEdit) &&
                             <CancelButton callback={this.handleCancelOnClick} label="Annuler"/>
                         }
                     </div>

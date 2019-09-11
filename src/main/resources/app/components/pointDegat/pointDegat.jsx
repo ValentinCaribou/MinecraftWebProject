@@ -8,8 +8,6 @@ const PointDegat = ({nbCoeur, impair}) => {
     for (let i = 0; i < nbCoeur; i++) {
         rows.push(<img className="imageHeart" src={Heart}/>);
     }
-    // return <tbody>{rows}</tbody>;
-    console.log(impair);
     return (
         <div className="input-div">
             {
