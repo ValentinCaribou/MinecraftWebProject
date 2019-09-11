@@ -110,7 +110,8 @@ main {
 
 .bm-menu {
     /*background: linear-gradient(120deg, #4978B9, #3DB8D8);*/
-    background: #492416;
+    /*background: #492416;*/
+    background-image: url("assets/image/MinecraftFoncer.png");
     /*padding-left: 1em;*/
     font-size: 0.9em;
 }
