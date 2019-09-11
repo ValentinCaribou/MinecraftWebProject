@@ -3,6 +3,7 @@ import InputDiv from "../inputs/input-div";
 import {AjoutButton, CancelButton, ConfirmButton, EditButton} from "../buttons/Buttons";
 import InputName from "../inputs/input-name/input-name";
 import SelectInput from "../inputs/SelectInput/selectInput";
+import PointDegat from "../pointDegat/pointDegat";
 // import {balanceTonToast} from "../../redux/toast/dispatch";
 
 const TAILLE_IMAGE_MAX = 2000000;
@@ -18,6 +19,8 @@ export class InfoWeapon extends React.Component {
             inEdit: this.props.creatingWeapon,
             isFormatPortrait: true,
             isUpdated: false,
+            nbCoeur:0,
+            impair: false,
             categorie:['Arme', 'Armure', 'Outil', 'Bloc']
         };
         this.persistWeapon = this.persistWeapon.bind(this);
@@ -25,7 +28,8 @@ export class InfoWeapon extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps !== this.props){
-            this.setState({newWeapon: {...this.props.weapons}})
+            this.setState({newWeapon: {...this.props.weapons}});
+            this.transformeNumber(this.props.weapons.damage);
         }
     }
 
@@ -55,6 +59,24 @@ export class InfoWeapon extends React.Component {
     handleCancelOnClick = () => {
         const weapons = {...this.props.weapons};
         this.setState({newWeapon: weapons, inEdit: false});
+    };
+
+    transformeNumber = (number) => {
+        let nombreFinal = number;
+        console.log(number);
+        if (number !== 0){
+            if (number%2 === 0){
+                nombreFinal = number / 2;
+                this.setState({nbCoeur: nombreFinal});
+                this.setState({impair: false});
+            }
+            else{
+                nombreFinal = (number - 1) /2;
+                this.setState({nbCoeur: nombreFinal});
+                this.setState({impair: true});
+            }
+        }
+        console.log(nombreFinal);
     };
 
     getImage = (e) => {
@@ -115,7 +137,7 @@ export class InfoWeapon extends React.Component {
 
     render() {
         const {creatingWeapon, verifFormatImage} = this.props;
-        const {newWeapon, inEdit, isUpdated, isFormatPortrait, categorie} = this.state;
+        const {newWeapon, inEdit, isUpdated, isFormatPortrait, categorie, impair, nbCoeur} = this.state;
         return (
 
             <>
@@ -168,6 +190,8 @@ export class InfoWeapon extends React.Component {
                     <InputDiv name="damage" label="Dégat :" type="number" readOnly={!inEdit}
                               value={newWeapon.damage}
                               onChange={this.handleOnChange} required/>
+
+                              <PointDegat nbCoeur={nbCoeur} impair={impair}/>
 
                     <InputDiv name="range" label="Porté de l'arme :" type="number" readOnly={!inEdit}
                               value={newWeapon.range}

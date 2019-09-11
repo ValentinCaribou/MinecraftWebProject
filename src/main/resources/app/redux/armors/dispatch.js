@@ -47,12 +47,30 @@ export const ajoutArmor = (armor) => {
             .then(armor1 => {
                     dispatch(action.setArmor(armor));
                     dispatch(action.setPending(false));
-                    dispatch(balanceTonToast("success", "Ajout réussi"));
+                    dispatch(balanceTonToast("success", "Ajout réussie"));
                 }
             ).catch((error) => {
             console.log(error);
             dispatch(action.setPending(false));
             dispatch(balanceTonToast("error", "Erreur lors de l'ajout"));
+            return Promise.reject(error);
+        })
+    }
+};
+
+export const updateArmor = (armor) => {
+    return (dispatch) => {
+        dispatch(action.setPending(true));
+        addArmor(armor)
+            .then(armor1 => {
+                    dispatch(action.setArmor(armor));
+                    dispatch(action.setPending(false));
+                    dispatch(balanceTonToast("success", "Mise à jour réussie"));
+                }
+            ).catch((error) => {
+            console.log(error);
+            dispatch(action.setPending(false));
+            dispatch(balanceTonToast("error", "Erreur lors de la mise à jour"));
             return Promise.reject(error);
         })
     }

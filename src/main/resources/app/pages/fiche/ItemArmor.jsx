@@ -4,8 +4,8 @@ import {connect} from "react-redux";
 import './item.scss'
 import IsPending from "../../components/isPending/isPending";
 import {InfoArmor} from "../../components/info/InfoArmor";
-import {updateWeapon,getWeapon} from "../../redux/weapons/dispatch";
-import {getArmor} from "../../redux/armors/dispatch";
+import {updateWeapon} from "../../redux/weapons/dispatch";
+import {getArmor, updateArmor} from "../../redux/armors/dispatch";
 
 
 class Item extends Component {
@@ -24,8 +24,8 @@ class Item extends Component {
         this.props.dispatch(getArmor(this.props.match.params.id));
     }
 
-    updateWeapon = (weapon) => {
-        this.props.dispatch(updateWeapon(weapon))
+    updateArmor = (armor) => {
+        this.props.dispatch(updateArmor(armor))
     };
 
     render() {
@@ -48,7 +48,7 @@ class Item extends Component {
                                             dispatch={this.props.dispatch}
                                             armors={armor}
                                             isFormatPortrait={this.state.isFormatPortrait}
-                                            updateWeapon={this.updateWeapon}
+                                            updateArmor={this.updateArmor}
                                             creatingWeapon={false}
                                         />
                                     }

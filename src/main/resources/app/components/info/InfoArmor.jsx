@@ -160,7 +160,7 @@ export class InfoArmor extends React.Component {
                         type="text"
                         id="categorieItem"
                         name="categorie"
-                        valeurDefaut="Arme"
+                        valeurDefaut="Armure"
                         onChange={this.handleOnChange}
                         boucle={categorie}
                     />

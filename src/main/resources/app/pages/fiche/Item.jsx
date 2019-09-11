@@ -5,7 +5,6 @@ import './item.scss'
 import IsPending from "../../components/isPending/isPending";
 import {InfoWeapon} from "../../components/info/InfoWeapon";
 import {updateWeapon,getWeapon} from "../../redux/weapons/dispatch";
-import {getArmor} from "../../redux/armors/dispatch";
 
 
 class Item extends Component {
@@ -22,7 +21,6 @@ class Item extends Component {
 
     componentDidMount() {
         this.props.dispatch(getWeapon(this.props.match.params.id));
-        this.props.dispatch(getArmor(this.props.match.params.id));
     }
 
     updateWeapon = (weapon) => {
@@ -30,9 +28,8 @@ class Item extends Component {
     };
 
     render() {
-        let {weapon, isLoading, dispatch, armor} = this.props;
+        let {weapon, isLoading, dispatch} = this.props;
         const {inAdd} = this.state;
-        console.log(this.props);
         return (
             <>
                 <div id="white-pattern"></div>
