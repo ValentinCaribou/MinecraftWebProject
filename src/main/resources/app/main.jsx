@@ -10,6 +10,7 @@ import './index.css';
 import Item from "./pages/fiche/Item";
 import ItemArmor from "./pages/fiche/ItemArmor";
 import Toast from "./components/toast";
+import Error404 from "./pages/error/error404";
 
 class Main extends Component {
 
@@ -67,7 +68,7 @@ class Main extends Component {
                             <Route exact path="/armures/add" component={addArmors}/>
                             <Route exact path="/armes/:id" component={Item}/>
                             <Route exact path="/armure/:id" component={ItemArmor}/>
-                            {/*<Route component={Error404}/>*/}
+                            <Route component={Error404}/>
                         </Switch>
                     </Router>
                 </main>

@@ -1,0 +1,22 @@
+.white-container{
+    list-style-type: none;
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    margin: 15%;
+    padding: 1em;
+    text-align: center;
+}
+
+.error-title{
+    font-size: 5em;
+    font-family:  MinecraftiaRegular, sans-serif;
+    color: #d83133;
+    margin: 0;
+}
+
+.error-text{
+    font-family:  MinecraftiaRegular, sans-serif;
+    color: white;
+    font-size: 1.5em;
+}
+
