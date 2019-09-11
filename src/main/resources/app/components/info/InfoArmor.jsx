@@ -147,12 +147,6 @@ export class InfoArmor extends React.Component {
 
                 </div>
                 <div className="personal-info">
-                    {
-                        !inEdit &&
-                        <div className="action-modif-profil">
-                            <EditButton callback={this.handleEditOnClick}/>
-                        </div>
-                    }
 
                     <SelectInput
                         className="input-div"
@@ -185,7 +179,13 @@ export class InfoArmor extends React.Component {
                         }
 
                         {
-                            (!creatingArmor && inEdit && isUpdated) &&
+                            !inEdit &&
+                            <EditButton callback={this.handleEditOnClick}/>
+
+                        }
+
+                        {
+                            (!creatingArmor && inEdit) &&
                             <CancelButton callback={this.handleCancelOnClick} label="Annuler"/>
                         }
                     </div>

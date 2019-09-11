@@ -178,7 +178,7 @@ export class InfoWeapon extends React.Component {
                         type="text"
                         id="categorieItem"
                         name="categorie"
-                        valeurDefaut="-- Sélectionner une catégorie --"
+                        valeurDefaut="Arme"
                         onChange={this.handleOnChange}
                         boucle={categorie}
                     />
@@ -187,7 +187,10 @@ export class InfoWeapon extends React.Component {
                               value={newWeapon.damage}
                               onChange={this.handleOnChange} required/>
 
-                              <PointDegat nbCoeur={nbCoeur} impair={impair}/>
+                    {
+                        nbCoeur !== 0 &&
+                        <PointDegat nbCoeur={nbCoeur} impair={impair}/>
+                    }
 
                     <InputDiv name="range" label="Porté de l'arme :" type="number" readOnly={!inEdit}
                               value={newWeapon.range}
