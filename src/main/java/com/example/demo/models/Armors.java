@@ -2,11 +2,14 @@ package com.example.demo.models;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
+
 public class Armors extends Items {
     @Id
     private String id;
     private int resistance;
     private int pointOfDefense;
+    private List<Enchantement> enchantements;
 
     public Armors(String nom, String categorie, String image, int resistance, int pointOfDefense) {
         super(nom, categorie, image);
@@ -19,6 +22,13 @@ public class Armors extends Items {
         this.id = id;
         this.resistance = resistance;
         this.pointOfDefense = pointOfDefense;
+    }
+
+    public Armors(String nom, String categorie, String image, int resistance, int pointOfDefense, List<Enchantement> enchantements) {
+        super(nom, categorie, image);
+        this.resistance = resistance;
+        this.pointOfDefense = pointOfDefense;
+        this.enchantements = enchantements;
     }
 
     public Armors() {
@@ -47,6 +57,14 @@ public class Armors extends Items {
 
     public void setPointOfDefense(int pointOfDefense) {
         this.pointOfDefense = pointOfDefense;
+    }
+
+    public List<Enchantement> getEnchantements() {
+        return enchantements;
+    }
+
+    public void setEnchantements(List<Enchantement> enchantements) {
+        this.enchantements = enchantements;
     }
 
     @Override

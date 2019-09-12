@@ -122,7 +122,7 @@
         justify-content: center;
         flex-direction: row;
         margin: 0;
-        color: #1068B0;
+        color: white;
         font-size: 2em;
         flex-wrap: wrap;
 
@@ -350,7 +350,8 @@
           line-height: 2;
           width: 100%;
           font-size: 22px;
-          color: #4782BD;
+          color: white;
+          text-align: center;
         }
 
         .ingredient, .participant {

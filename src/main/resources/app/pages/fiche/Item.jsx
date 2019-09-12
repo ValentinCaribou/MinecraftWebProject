@@ -52,6 +52,13 @@ class Item extends Component {
                                         />
                                     }
                                 </div>
+                                <div className="repas-fiche-deuxiemeColonne">
+                                    <div className="repas-participant container-white">
+                                        <div className="chips">
+                                            <label>Enchantement : </label>
+                                        </div>
+                                    </div>
+                                </div>
                             </>
                     }
                 </div>

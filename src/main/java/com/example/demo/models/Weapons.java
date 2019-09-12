@@ -2,6 +2,8 @@ package com.example.demo.models;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
+
 public class Weapons extends Items {
 
     @Id
@@ -9,6 +11,7 @@ public class Weapons extends Items {
     private int damage;
     private float range;
     private float DPS;
+    private List<Enchantement> enchantement;
 
     public Weapons(String nom, String categorie, String image, int damage, float range, float DPS) {
         super(nom, categorie, image);
@@ -23,6 +26,14 @@ public class Weapons extends Items {
         this.damage = damage;
         this.range = range;
         this.DPS = DPS;
+    }
+
+    public Weapons(String nom, String categorie, String image, int damage, float range, float DPS, List<Enchantement> enchantement) {
+        super(nom, categorie, image);
+        this.damage = damage;
+        this.range = range;
+        this.DPS = DPS;
+        this.enchantement = enchantement;
     }
 
     public Weapons() {
@@ -59,6 +70,14 @@ public class Weapons extends Items {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public List<Enchantement> getEnchantement() {
+        return enchantement;
+    }
+
+    public void setEnchantement(List<Enchantement> enchantement) {
+        this.enchantement = enchantement;
     }
 
     @Override

@@ -18,7 +18,13 @@ public enum CodeErreurAppli {
     XCC("XCC","Armor's name is not valid "),
     XCD("XCD","Armor's categories is not valid "),
     XCE("XCE","Armor's resistance is not valid "),
-    XCF("XCF","Armor's point of defense is not valid ");
+    XCF("XCF","Armor's point of defense is not valid "),
+    XDA("XDA","Enchantement's Ids seems not be valid "),
+    XDB("XDB","Enchantement's Id is not found. "),
+    XDC("XDC","Enchantement's name is not valid "),
+    XDD("XDD","Enchantement's description is not valid "),
+    XDE("XDE","Enchantement's obtention is not valid "),
+    XDF("XDF","Enchantement's level of defense is not valid ");
 
 
     private String code;
