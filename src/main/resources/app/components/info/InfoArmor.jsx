@@ -3,6 +3,7 @@ import InputDiv from "../inputs/input-div";
 import {AjoutButton, CancelButton, ConfirmButton, EditButton} from "../buttons/Buttons";
 import InputName from "../inputs/input-name/input-name";
 import SelectInput from "../inputs/SelectInput/selectInput";
+import PointDefence from "../pointdeDefence/pointDefence";
 // import {balanceTonToast} from "../../redux/toast/dispatch";
 
 const TAILLE_IMAGE_MAX = 2000000;
@@ -18,6 +19,8 @@ export class InfoArmor extends React.Component {
             inEdit: this.props.creatingArmor,
             isFormatPortrait: true,
             isUpdated: false,
+            nbArmor:0,
+            impair: false,
             categorie:['Arme', 'Armure', 'Outil', 'Bloc']
         };
         this.persistArmor = this.persistArmor.bind(this);
@@ -25,13 +28,17 @@ export class InfoArmor extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps !== this.props){
-            this.setState({newArmor: {...this.props.armors}})
+            this.setState({newArmor: {...this.props.armors}});
+            this.transformeNumber(this.props.armors.pointOfDefense);
         }
     }
 
     persistArmor = (name, value) => {
         const newArmor = {...this.state.newArmor};
         newArmor[name] = value;
+        if (name === "pointOfDefense"){
+            this.transformeNumber(value);
+        }
         this.setState({newArmor, isUpdated: true});
     };
 
@@ -55,6 +62,22 @@ export class InfoArmor extends React.Component {
     handleCancelOnClick = () => {
         const armors = {...this.props.armors};
         this.setState({newArmor: armors, inEdit: false});
+    };
+
+    transformeNumber = (number) => {
+        let nombreFinal = number;
+        if (number !== 0){
+            if (number%2 === 0){
+                nombreFinal = number / 2;
+                this.setState({nbArmor: nombreFinal});
+                this.setState({impair: false});
+            }
+            else{
+                nombreFinal = (number - 1) /2;
+                this.setState({nbArmor: nombreFinal});
+                this.setState({impair: true});
+            }
+        }
     };
 
     getImage = (e) => {
@@ -115,7 +138,7 @@ export class InfoArmor extends React.Component {
 
     render() {
         const {creatingArmor, verifFormatImage} = this.props;
-        const {newArmor, inEdit, isUpdated, isFormatPortrait, categorie} = this.state;
+        const {newArmor, inEdit, isUpdated, isFormatPortrait, categorie, impair, nbArmor} = this.state;
         return (
 
             <>
@@ -166,6 +189,11 @@ export class InfoArmor extends React.Component {
                     <InputDiv name="pointOfDefense" label="Point de défence :" type="number" readOnly={!inEdit}
                               value={newArmor.pointOfDefense}
                               onChange={this.handleOnChange} required/>
+
+                    {
+                        nbArmor !== 0 &&
+                        <PointDefence nbArmor={nbArmor} impair={impair}/>
+                    }
 
                     <div className="button-container">
                         {

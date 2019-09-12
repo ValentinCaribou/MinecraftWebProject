@@ -3,6 +3,7 @@ import InputDiv from "../inputs/input-div";
 import {AjoutButton, CancelButton, ConfirmButton, EditButton} from "../buttons/Buttons";
 import InputName from "../inputs/input-name/input-name";
 import SelectInput from "../inputs/SelectInput/selectInput";
+import PointDefence from "../pointdeDefence/pointDefence";
 import PointDegat from "../pointDegat/pointDegat";
 // import {balanceTonToast} from "../../redux/toast/dispatch";
 
