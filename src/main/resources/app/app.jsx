@@ -4,6 +4,7 @@ import {applyMiddleware, combineReducers, createStore} from 'redux';
 import armorsReducers from './redux/armors/reducers';
 import weaponsReducers from "./redux/weapons/reducers";
 import toastReducer from "./redux/toast/reducers";
+import enchantementReducer from "./redux/enchantement/reducers";
 import Main from "./main"
 import thunk from 'redux-thunk';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -37,6 +38,7 @@ const reducer = combineReducers({
     armorsReducers,
     weaponsReducers,
     toastReducer,
+    enchantementReducer,
 });
 
 const store = createStore(

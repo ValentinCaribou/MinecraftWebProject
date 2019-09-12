@@ -5,6 +5,7 @@ import { slide as Menu } from 'react-burger-menu';
 import {connect} from 'react-redux';
 import addWeapons from "./pages/addWeapon";
 import addArmors from "./pages/addArmors";
+import addEnchantement from "./pages/addEnchantement";
 import Home from "./pages/home/home";
 import HomeArmor from "./pages/home/homeArmor";
 import HomeWeapons from "./pages/home/homeWeapons";
@@ -15,6 +16,7 @@ import Toast from "./components/toast";
 import Error404 from "./pages/error/error404";
 import Sword from "./assets/image/epeePierre.png"
 import Armor from "./assets/image/diamondchestplate_icon32.png"
+import Enchantement from "./assets/image/Table_d'enchantement.png"
 
 
 class Main extends Component {
@@ -63,6 +65,8 @@ class Main extends Component {
                     <a id="ajoutArme" className="bm-item menu-item" href="/armes/add"><img className="imageEpee" src={Sword}/> Ajouter une arme</a>
 
                     <a id="ajoutArmure" className="bm-item menu-item" href="/armures/add"><img className="imageEpee" src={Armor}/> Ajouter une Armure</a>
+
+                    <a id="ajoutEnchantement" className="bm-item menu-item" href="/enchantements/add"><img className="imageEpee" src={Enchantement}/> Ajouter un Enchantement</a>
                 </Menu>
 
                 <main>
@@ -71,10 +75,13 @@ class Main extends Component {
                             <Route exact path="/" component={Home}/>
                             <Route exact path="/armes" component={HomeWeapons}/>
                             <Route exact path="/armures" component={HomeArmor}/>
+                            <Route exact path="/enchantements" component={HomeArmor}/>
                             <Route exact path="/armes/add" component={addWeapons}/>
                             <Route exact path="/armures/add" component={addArmors}/>
+                            <Route exact path="/enchantements/add" component={addEnchantement}/>
                             <Route exact path="/armes/:id" component={Item}/>
                             <Route exact path="/armure/:id" component={ItemArmor}/>
+                            <Route exact path="/enchantements/:id" component={ItemArmor}/>
                             <Route component={Error404}/>
                         </Switch>
                     </Router>

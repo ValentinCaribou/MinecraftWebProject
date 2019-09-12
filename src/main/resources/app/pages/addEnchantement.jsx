@@ -1,26 +1,26 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {ajoutArmor} from "../../app/redux/armors/dispatch";
+import {ajoutEnchantement} from "../../app/redux/enchantement/dispatch";
 import {AddButton, CancelButton, BackButtonArrow} from "../components/buttons/Buttons";
 import IsPending from "../components/isPending/isPending";
-import {InfoArmor} from "../components/info/InfoArmor";
+import {InfoEnchantement} from "../components/info/InfoEnchantement";
 
-const defaultArmor = {
+const defaultEnchantement = {
     nom: "",
-    categorie: "",
-    image: "",
-    resistance: 0,
-    pointOfDefense: 0
+    description: "",
+    obtenable: "",
+    niveau: 0,
+    image: ""
 };
 const TAILLE_IMAGE_MAX = 2000000;
 const HEIGHT_IMAGE_RATIO = 1.5;
 const WIDTH_IMAGE_RATIO = 1.5;
 
-class AddArmor extends Component {
+class AddEnchantement extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            armor: defaultArmor,
+            enchantement: defaultEnchantement,
             isShowPopup: false,
             setIsFormatPortrait: true,
             isFormatPortrait: true,
@@ -33,15 +33,15 @@ class AddArmor extends Component {
         this.setState({isShowPopup: !this.state.isShowPopup})
     };
 
-    createArmors = (armors) => {
+    createEnchantement = (enchantement) => {
         const {dispatch} = this.props;
         if (this.state.isShowPopup) {
             this.togglePopup();
         } else {
-            dispatch(ajoutArmor(armors))
+            dispatch(ajoutEnchantement(enchantement))
                 .then((response) => {
                     document.location.href = `/weapons/${response.id}`;
-                    this.setState({armor: defaultArmor});
+                    this.setState({enchantement: defaultEnchantement});
                 })
                 .catch((error) => {
                     console.log(error)
@@ -51,7 +51,7 @@ class AddArmor extends Component {
 
     render() {
         let {isLoading} = this.props;
-        let {inAdd, armor} = this.state;
+        let {inAdd, enchantement} = this.state;
         return (
             <>
                 <div id="white-pattern"></div>
@@ -63,13 +63,13 @@ class AddArmor extends Component {
                                 <>
                                     <div className="repas-fiche container-white responsive-witdh-fiche">
                                         <BackButtonArrow/>
-                                        <InfoArmor
+                                        <InfoEnchantement
                                             dispatch={this.props.dispatch}
-                                            armors={armor}
+                                            enchantements={enchantement}
                                             isFormatPortrait={this.state.isFormatPortrait}
                                             // getImage={this.getImage}
-                                            updateArmor={this.createArmors}
-                                            creatingArmor={true}
+                                            updateEnchantement={this.createEnchantement}
+                                            createEnchantement={true}
                                         />
                                     </div>
                                 </>
@@ -82,7 +82,7 @@ class AddArmor extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        weapon: state.armorsReducers.armor,
+        enchantement: state.enchantementReducer.enchantement,
     }
 };
-export default connect(mapStateToProps)(AddArmor);
+export default connect(mapStateToProps)(AddEnchantement);

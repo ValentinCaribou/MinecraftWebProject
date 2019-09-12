@@ -1,0 +1,12 @@
+.textAreaInput {
+    position: relative;
+}
+
+.textAreaInput .label {
+    color: white;
+}
+
+.centerChevron {
+    text-align: center;
+    width: 100%;
+}
