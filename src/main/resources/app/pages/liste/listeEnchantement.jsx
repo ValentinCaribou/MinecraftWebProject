@@ -15,25 +15,28 @@ class ListeEnchantements extends Component {
     }
 
     render() {
-        const {enchantements, isLoading} = this.props;
+        const {enchantements, isPending} = this.props;
+        console.log(this.props);
         return (
             <div className="table-search">
                 <div className="list-repas">
                     {
-                        isLoading ? (
+                        isPending ? (
                                 <IsPending className="repas-pending"/>
                             )
                             :
                             (<>
                                     <section className="card">
                                         {
-                                            enchantements !== undefined &&
+                                            enchantements !== undefined ?
                                             enchantements.length > 0 ?
                                                 enchantements.map((item) => {
                                                     return <Item key={item.id}
                                                                  dispatch={this.props.dispatch}
                                                                  item={item}/>
                                                 })
+                                                :
+                                                <div className="container-white no-results"> Aucun résultat trouvé !</div>
                                                 :
                                                 <div className="container-white no-results"> Aucun résultat trouvé !</div>
                                         }
@@ -49,7 +52,7 @@ class ListeEnchantements extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isLoading: state.enchantementReducer.isLoading,
+        isPending: state.enchantementReducer.isPending,
         enchantements: state.enchantementReducer.enchantements,
     }
 };

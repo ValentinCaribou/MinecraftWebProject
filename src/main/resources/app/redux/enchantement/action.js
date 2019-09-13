@@ -5,9 +5,9 @@ const setEnchantement = (enchantement) => ({
     enchantement
 });
 
-const setEnchantements = (enchantement) => ({
+const setEnchantements = (enchantements) => ({
     type: types.SET_ENCHANTEMENTS,
-    enchantement
+    enchantements
 });
 
 const setPending = (pending) => ({

@@ -62,6 +62,23 @@ public class EnchantementService {
     }
 
     /**
+     * get enchantement by obtenable
+     *
+     * @param obtenable
+     * @return response entity with enchantement or a list of error
+     */
+    public IResult<Enchantement, List<String>> getByObtenable(String obtenable){
+        List<String> errors = new ArrayList<>();
+        Optional<Enchantement> enchantement = this.enchantementRepo.findByObtenable(obtenable);
+
+        if (obtenable.equals("") || !enchantement.isPresent()) {
+            String message = "obtenable not found";
+            errors.add(message);
+        }
+        return handleResult(enchantement, errors, Optional::get);
+    }
+
+    /**
      * Save an enchantement
      *
      * @param enchantement
@@ -77,13 +94,13 @@ public class EnchantementService {
         }
 
         Function<Enchantement, Enchantement> function = (enchantement1) -> {
-            if (enchantement1.getImage() != null) {
-                if (enchantement1.getImage().indexOf("data:image") == 0) {
-                    if (!verifTailleImage(convertStringToImageByteArray(enchantement1.getImage()))) {
-                        enchantement1.setImage(null);
-                    }
-                }
-            }
+//            if (enchantement1.getImage() != null) {
+//                if (enchantement1.getImage().indexOf("data:image") == 0) {
+//                    if (!verifTailleImage(convertStringToImageByteArray(enchantement1.getImage()))) {
+//                        enchantement1.setImage(null);
+//                    }
+//                }
+//            }
             return enchantementRepo.save(enchantement1);
         };
         return handleResult(enchantement, errorList, function);

@@ -12,6 +12,7 @@ export const getEnchantements = () => {
         dispatch(action.setPending(true));
         getEnchantementList()
             .then(enchantements => {
+                    console.log(enchantements);
                     dispatch(action.setEnchantements(enchantements));
                     dispatch(action.setPending(false));
                     return Promise.resolve();
