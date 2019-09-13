@@ -119,6 +119,10 @@ export class InfoEnchantement extends React.Component {
     render() {
         const {creatingEnchantement, verifFormatImage} = this.props;
         const {newEnchantement, inEdit, isUpdated, isFormatPortrait, categorie} = this.state;
+        let categorieObtenable = newEnchantement.obtenable;
+        if (categorieObtenable === null || categorieObtenable === ''){
+            categorieObtenable = "-- Selectionner une catégorie --"
+        }
 
         return (
 
@@ -158,7 +162,7 @@ export class InfoEnchantement extends React.Component {
                         type="text"
                         id="categorieItem"
                         name="obtenable"
-                        valeurDefaut="-- Selectionner une catégorie --"
+                        valeurDefaut={categorieObtenable}
                         onChange={this.handleOnChange}
                         boucle={categorie}
                     />
