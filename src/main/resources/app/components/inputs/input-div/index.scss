@@ -2,6 +2,9 @@
   display: flex;
   margin-bottom: 5px;
 
+  .input-select-enchantement {
+    padding-top: 1em;
+  }
   input {
     height: 1.5em;
     font-family: MinecraftiaRegular, sans-serif;
@@ -17,6 +20,12 @@
   input:focus{
     border: 2px solid #0960a3;
   }
+}
+
+.input-select-enchantement {
+  display: flex;
+  margin-bottom: 5px;
+  padding-top: 1em;
 }
 
 .input-div-info {

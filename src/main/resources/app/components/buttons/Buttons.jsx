@@ -107,6 +107,19 @@ AjoutButton.propType = {
     callback: PropTypes.func.isRequired
 };
 
+export const AjoutButtonAlt = ({callback}) => {
+    return (
+        <button
+            type="submit"
+            className="buttonMinecraft"
+            onClick={callback}
+        > Ajouter </button>
+    )
+};
+AjoutButtonAlt.propType = {
+    callback: PropTypes.func.isRequired
+};
+
 
 
 

@@ -1,7 +1,8 @@
 import {
     getEnchantementList,
     getEnchantementById,
-    addEnchantement
+    addEnchantement,
+    getEnchantementWhereObtention
 } from "../../services/gestionEnchantement";
 import {balanceTonToast} from "../toast/dispatch";
 
@@ -30,6 +31,22 @@ export const getEnchantement = (id) => {
         getEnchantementById(id)
             .then(armor => {
                     dispatch(action.setEnchantement(armor));
+                    dispatch(action.setPending(false));
+                    return Promise.resolve();
+                }
+            ).catch((error) => {
+            console.log(error);
+            return Promise.reject(error);
+        })
+    }
+};
+
+export const getEnchantementObtention = (obtention) => {
+    return (dispatch) => {
+        dispatch(action.setPending(true));
+        getEnchantementWhereObtention(obtention)
+            .then(enchantement => {
+                    dispatch(action.setEnchantements(enchantement));
                     dispatch(action.setPending(false));
                     return Promise.resolve();
                 }

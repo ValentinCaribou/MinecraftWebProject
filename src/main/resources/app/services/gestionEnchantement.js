@@ -25,3 +25,9 @@ export function addEnchantement(armor){
         .then(checkStatus)
         .then(response => response.json())
 }
+
+export function getEnchantementWhereObtention(obtention) {
+    return fetch(url + "/obtenable/" + obtention)
+        .then(checkStatus)
+        .then(response => response.json())
+}

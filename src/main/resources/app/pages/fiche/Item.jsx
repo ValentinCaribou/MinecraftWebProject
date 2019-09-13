@@ -1,12 +1,13 @@
 import React, {Component} from "react";
-import {AddButton, BackButtonArrow, RemoveButton} from "../../components/buttons/Buttons";
+import {AddButton, AjoutButtonAlt, BackButtonArrow, RemoveButton} from "../../components/buttons/Buttons";
 import {connect} from "react-redux";
 import './item.scss'
 import IsPending from "../../components/isPending/isPending";
 import {InfoWeapon} from "../../components/info/InfoWeapon";
 import {updateWeapon,getWeapon} from "../../redux/weapons/dispatch";
-import {} from "../../redux/enchantement/dispatch";
-import SelectInput from "../../components/inputs/SelectInput/selectInput";
+import {getEnchantementObtention, getEnchantement} from "../../redux/enchantement/dispatch";
+import SelectInputEnchantement from "../../components/inputs/SelectInput/selectInputEnchantement";
+import {TextAreaInput} from "../../components/inputs/TextAreaInput/TextAreaInput";
 
 
 class Item extends Component {
@@ -23,14 +24,21 @@ class Item extends Component {
 
     componentDidMount() {
         this.props.dispatch(getWeapon(this.props.match.params.id));
+        this.props.dispatch(getEnchantementObtention("Arme"));
     }
 
     updateWeapon = (weapon) => {
-        this.props.dispatch(updateWeapon(weapon))
+        this.props.dispatch(updateWeapon(weapon));
+    };
+
+    handleOnChange = (e) => {
+        const target = e.currentTarget;
+        console.log(target.name, target.value);
+        this.props.dispatch(getEnchantement(target.value));
     };
 
     render() {
-        let {weapon, isLoading, dispatch} = this.props;
+        let {weapon, isLoading, dispatch, enchantements, enchantement} = this.props;
         const {inAdd} = this.state;
         return (
             <>
@@ -58,17 +66,39 @@ class Item extends Component {
                                     <div className="repas-participant container-white">
                                         <div className="chips">
                                             <label>Enchantement : </label>
-                                            <div className="personal-info">
-                                                <SelectInput
-                                                    className="input-div"
-                                                    label="Enchantement disponible"
-                                                    type="text"
-                                                    id="enchantement"
-                                                    name="enchantement"
-                                                    valeurDefaut="-- Sélectionner un enchantement --"
-                                                    onChange={this.handleOnChange}
-                                                    boucle={categorie}
-                                                />
+                                            <div className="enchantement-info">
+                                                {
+                                                    enchantements !== undefined &&
+                                                    <SelectInputEnchantement
+                                                        className="input-select-enchantement"
+                                                        label="Enchantement disponible :"
+                                                        type="text"
+                                                        id="enchantement"
+                                                        name="enchantement"
+                                                        valeurDefaut="-- Sélectionner un enchantement --"
+                                                        onChange={this.handleOnChange}
+                                                        boucle={enchantements}
+                                                    />
+                                                }
+                                                <div className="input-description-enchantement">
+                                                {
+                                                    enchantement !== undefined &&
+                                                    <TextAreaInput
+                                                        label="Description de l'enchantement :"
+                                                        content={enchantement.description}
+                                                        alterContent={"Ancun enchantement attribuer..."}
+                                                        targetPropName="description"
+                                                        handleChange={this.persistEnchantement}
+                                                        readOnly={true}
+                                                        withResume={true}
+                                                    />
+                                                }
+                                                </div>
+                                                {
+                                                    <div className="button-container">
+                                                        <AjoutButtonAlt callback={this.handleSubmitOnclick}/>
+                                                    </div>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -85,7 +115,8 @@ class Item extends Component {
 const mapStateToProps = (state) => {
     return {
         weapon: state.weaponsReducers.weapon,
-        armor: state.armorsReducers.armor,
+        enchantements: state.enchantementReducer.enchantements,
+        enchantement: state.enchantementReducer.enchantement,
     }
 };
 export default connect(mapStateToProps)(Item);
