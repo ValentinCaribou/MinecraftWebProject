@@ -61,21 +61,72 @@ public class EnchantementService {
         return handleResult(enchantement, errors, Optional::get);
     }
 
+//    /**
+//     * get enchantement by obtenable
+//     *
+//     * @param obtenable
+//     * @return response entity with enchantement or a list of error
+//     */
+//    public IResult<Enchantement, List<String>> getByObtenable(String obtenable){
+//        List<String> errors = new ArrayList<>();
+//        Optional<Enchantement> enchantement = this.enchantementRepo.findAllByObtenable(obtenable);
+//
+//        if (obtenable.equals("") || !enchantement.isPresent()) {
+//            String message = "obtenable not found";
+//            errors.add(message);
+//        }
+//        return handleResult(enchantement, errors, Optional::get);
+//    }
+
     /**
      * get enchantement by obtenable
      *
      * @param obtenable
      * @return response entity with enchantement or a list of error
      */
-    public IResult<Enchantement, List<String>> getByObtenable(String obtenable){
+    public List<Enchantement> getByObtenable(String obtenable){
         List<String> errors = new ArrayList<>();
-        Optional<Enchantement> enchantement = this.enchantementRepo.findByObtenable(obtenable);
+        List<Enchantement> enchantement = this.enchantementRepo.findAllByObtenable(obtenable);
+
+        if (obtenable.equals("") || !enchantement.isEmpty()) {
+            String message = "obtenable not found";
+            errors.add(message);
+        }
+        return enchantement;
+    }
+
+    /**
+     * get enchantement by obtenable
+     *
+     * @param obtenable
+     * @return response entity with enchantement or a list of error
+     */
+    public IResult<Enchantement, List<String>> getDistinctByObtenable(String obtenable){
+        List<String> errors = new ArrayList<>();
+        Optional<Enchantement> enchantement = this.enchantementRepo.findDistinctByObtenable(obtenable);
 
         if (obtenable.equals("") || !enchantement.isPresent()) {
             String message = "obtenable not found";
             errors.add(message);
         }
         return handleResult(enchantement, errors, Optional::get);
+    }
+
+    /**
+     * get enchantement by obtenable
+     *
+     * @param niveau
+     * @return response entity with enchantement or a list of error
+     */
+    public List<Enchantement> getByNiveau(int niveau){
+        List<String> errors = new ArrayList<>();
+        List<Enchantement> enchantement = this.enchantementRepo.findAllByNiveau(niveau);
+
+        if (niveau == 0 || !enchantement.isEmpty()) {
+            String message = "niveau not found";
+            errors.add(message);
+        }
+        return enchantement;
     }
 
     /**

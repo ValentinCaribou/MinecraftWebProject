@@ -48,9 +48,21 @@ public class EnchantementController {
      * @return enchantement or error list
      */
     @GetMapping("/obtenable/{obtenable}")
-    public ResponseEntity<?> getByObtenable(@PathVariable("obtenable") String obtenable){
-        IResult iResult = this.enchantementService.getByObtenable(obtenable);
-        return getResponseEntity(iResult);
+    public List<Enchantement> getByObtenable(@PathVariable("obtenable") String obtenable){
+        List<Enchantement> enchantements = this.enchantementService.getByObtenable(obtenable);
+        return enchantements;
+    }
+
+    /**
+     * get enchantement by obtenable
+     *
+     * @param niveau
+     * @return enchantement or error list
+     */
+    @GetMapping("/niveau/{niveau}")
+    public List<Enchantement> getByObtenable(@PathVariable("niveau") int niveau){
+        List<Enchantement> enchantements = this.enchantementService.getByNiveau(niveau);
+        return enchantements;
     }
 
     /**

@@ -5,6 +5,8 @@ import './item.scss'
 import IsPending from "../../components/isPending/isPending";
 import {InfoWeapon} from "../../components/info/InfoWeapon";
 import {updateWeapon,getWeapon} from "../../redux/weapons/dispatch";
+import {} from "../../redux/enchantement/dispatch";
+import SelectInput from "../../components/inputs/SelectInput/selectInput";
 
 
 class Item extends Component {
@@ -56,6 +58,18 @@ class Item extends Component {
                                     <div className="repas-participant container-white">
                                         <div className="chips">
                                             <label>Enchantement : </label>
+                                            <div className="personal-info">
+                                                <SelectInput
+                                                    className="input-div"
+                                                    label="Enchantement disponible"
+                                                    type="text"
+                                                    id="enchantement"
+                                                    name="enchantement"
+                                                    valeurDefaut="-- Sélectionner un enchantement --"
+                                                    onChange={this.handleOnChange}
+                                                    boucle={categorie}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
