@@ -16,7 +16,6 @@ class ListeEnchantements extends Component {
 
     render() {
         const {enchantements, isPending} = this.props;
-        console.log(this.props);
         return (
             <div className="table-search">
                 <div className="list-repas">
