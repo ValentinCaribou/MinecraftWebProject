@@ -47,7 +47,7 @@ public class EnchantementController {
      * @param obtenable
      * @return enchantement or error list
      */
-    @GetMapping("/{obtenable}")
+    @GetMapping("/obtenable/{obtenable}")
     public ResponseEntity<?> getByObtenable(@PathVariable("obtenable") String obtenable){
         IResult iResult = this.enchantementService.getByObtenable(obtenable);
         return getResponseEntity(iResult);

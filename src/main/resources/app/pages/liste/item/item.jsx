@@ -31,6 +31,8 @@ class Item extends Component {
             url = "armes"
         } else if(categorie === "Armure"){
             url = "armure"
+        } else if (categorie === undefined){
+            url = "enchantements"
         }
 
         return (

@@ -13,6 +13,7 @@ import homeEnchantement from "./pages/home/homeEnchantement";
 import './index.css';
 import Item from "./pages/fiche/Item";
 import ItemArmor from "./pages/fiche/ItemArmor";
+import ItemEnchantement from "./pages/fiche/ItemEnchantement";
 import Toast from "./components/toast";
 import Error404 from "./pages/error/error404";
 import Sword from "./assets/image/epeePierre.png"
@@ -84,7 +85,7 @@ class Main extends Component {
                             <Route exact path="/enchantements/add" component={addEnchantement}/>
                             <Route exact path="/armes/:id" component={Item}/>
                             <Route exact path="/armure/:id" component={ItemArmor}/>
-                            <Route exact path="/enchantements/:id" component={ItemArmor}/>
+                            <Route exact path="/enchantements/:id" component={ItemEnchantement}/>
                             <Route component={Error404}/>
                         </Switch>
                     </Router>
