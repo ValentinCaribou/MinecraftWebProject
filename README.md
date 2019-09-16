@@ -7,4 +7,5 @@ https://www.youtube.com/watch?v=3ppFTHyIyLo <br />
 https://minecraft-fr.gamepedia.com/Armure <br />
 https://codepen.io/afonsopacifer/pen/dRvypR <br />
 http://www.blocksandgold.com/fr/objets-minecraft/type-utilisation/outils-armures-armes.html <br />
-https://minecraft-fr.gamepedia.com/Enchantement
+https://minecraft-fr.gamepedia.com/Enchantement <br />
+Table de craft HTML : https://codepen.io/Cory_/pen/ZQqqqy

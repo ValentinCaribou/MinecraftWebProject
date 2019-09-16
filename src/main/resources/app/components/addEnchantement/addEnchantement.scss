@@ -1,0 +1,28 @@
+.chips {
+
+  .input-ingredient {
+    padding: 5px 5%;
+    border: 1.594px solid #e6e6e6;
+    border-radius: 0.25em;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    width: 89.4%;
+    height: 30px;
+    font-size: 1.3em;
+    font-family: futura, sans-serif;
+    color: #3DB8D8;
+    outline: none;
+
+    &::placeholder {
+      color: #dddddd;
+      opacity: 1;
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .btn-back {
+    margin-left: 5em;
+  }
+}

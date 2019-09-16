@@ -1,0 +1,33 @@
+.ingredient {
+
+  .chip {
+    cursor: default;
+    outline: none;
+    padding: 1px;
+    font-family: MinecraftiaRegular, sans-serif;
+    border-radius: 25px;
+    margin: 5px 2px;
+    //background-image: linear-gradient(to right, #56ccf2, #4978b9);
+    background-color: rgba(0,0,0,0.3);
+    min-width: calc(50% - 10px);
+
+    .chip-content {
+      text-align: center;
+      color: white;
+      border-radius: 20%;
+      cursor: inherit;
+      display: flex;
+      align-items: center;
+      user-select: none;
+      white-space: nowrap;
+      padding: 3px 12px;
+      justify-content: space-between;
+
+      .closebtn {
+        margin-top: -4px;
+        margin-left: 1em;
+        font-size: 22px;
+      }
+    }
+  }
+}

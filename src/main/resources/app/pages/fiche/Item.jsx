@@ -6,8 +6,8 @@ import IsPending from "../../components/isPending/isPending";
 import {InfoWeapon} from "../../components/info/InfoWeapon";
 import {updateWeapon,getWeapon} from "../../redux/weapons/dispatch";
 import {getEnchantementObtention, getEnchantement} from "../../redux/enchantement/dispatch";
-import SelectInputEnchantement from "../../components/inputs/SelectInput/selectInputEnchantement";
-import {TextAreaInput} from "../../components/inputs/TextAreaInput/TextAreaInput";
+import AddEnchantement from '../../components/addEnchantement/addEnchantement'
+import Enchantement from "../../components/Enchantement/Enchantement";
 
 
 class Item extends Component {
@@ -19,6 +19,7 @@ class Item extends Component {
             inAdd: false,
             inEdit: false,
             isShowPopup: false,
+            listeEnchantementEquiper: [],
         };
     }
 
@@ -27,19 +28,29 @@ class Item extends Component {
         this.props.dispatch(getEnchantementObtention("Arme"));
     }
 
+    _deleteEnchantement = (index) => {
+        const {dispatch, enchantement} = this.props;
+    };
+
     updateWeapon = (weapon) => {
         this.props.dispatch(updateWeapon(weapon));
     };
 
     handleOnChange = (e) => {
         const target = e.currentTarget;
-        console.log(target.name, target.value);
-        this.props.dispatch(getEnchantement(target.value));
+        if (target.value !== 1 || target.value !== "1"){
+            this.props.dispatch(getEnchantement(target.value));
+        }
+    };
+
+    addEnchantement = (enchantement) => {
+        console.log(enchantement);
+        this.state.listeEnchantementEquiper.push(enchantement);
     };
 
     render() {
         let {weapon, isLoading, dispatch, enchantements, enchantement} = this.props;
-        const {inAdd} = this.state;
+        const {inAdd, listeEnchantementEquiper} = this.state;
         return (
             <>
                 <div id="white-pattern"></div>
@@ -65,39 +76,34 @@ class Item extends Component {
                                 <div className="repas-fiche-deuxiemeColonne">
                                     <div className="repas-participant container-white">
                                         <div className="chips">
-                                            <label>Enchantement : </label>
-                                            <div className="enchantement-info">
+                                            <label>Enchantement disponible : </label>
+                                            <AddEnchantement
+                                                dispatch={this.props.dispatch}
+                                                enchantements={enchantements}
+                                                enchantement={enchantement}
+                                                onChange={this.addEnchantement}
+                                                />
+                                        </div>
+                                        <div className="chips">
+                                            <label>Enchantement ajouter : </label>
+                                            <div className="ingredient">
                                                 {
-                                                    enchantements !== undefined &&
-                                                    <SelectInputEnchantement
-                                                        className="input-select-enchantement"
-                                                        label="Enchantement disponible :"
-                                                        type="text"
-                                                        id="enchantement"
-                                                        name="enchantement"
-                                                        valeurDefaut="-- Sélectionner un enchantement --"
-                                                        onChange={this.handleOnChange}
-                                                        boucle={enchantements}
-                                                    />
-                                                }
-                                                <div className="input-description-enchantement">
-                                                {
-                                                    enchantement !== undefined &&
-                                                    <TextAreaInput
-                                                        label="Description de l'enchantement :"
-                                                        content={enchantement.description}
-                                                        alterContent={"Ancun enchantement attribuer..."}
-                                                        targetPropName="description"
-                                                        handleChange={this.persistEnchantement}
-                                                        readOnly={true}
-                                                        withResume={true}
-                                                    />
-                                                }
-                                                </div>
-                                                {
-                                                    <div className="button-container">
-                                                        <AjoutButtonAlt callback={this.handleSubmitOnclick}/>
-                                                    </div>
+                                                    !listeEnchantementEquiper.empty() ?
+                                                        listeEnchantementEquiper.sort(function (a, b) {
+                                                            return !a ? 1 : !b;
+                                                        }).map((enchantement, index) => {
+                                                            return (
+                                                                <Enchantement
+                                                                    key={index}
+                                                                    idEnchantement={index}
+                                                                    onDelete={this._deleteEnchantement}
+                                                                    readOnly={inAdd}
+                                                                    enchantement={enchantement}
+                                                                />
+                                                            )
+                                                        })
+                                                        :
+                                                        <i>Aucun enchantement attribuer pour le moment.</i>
                                                 }
                                             </div>
                                         </div>
