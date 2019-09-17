@@ -84,12 +84,16 @@ class AddEnchantement extends Component {
 
     render() {
         let enchantements = '';
-        const {enchantement} = this.props;
+        let {enchantement} = this.props;
         if (this.state.enchantements === undefined){
             enchantements = this.props.enchantements
         } else {
             enchantements = this.state.enchantements
         }
+
+        // if (!this.state.EnchantementVide){
+        //     enchantement = '';
+        // }
         return (
             <>
                 <div className="input-ingredient-container">

@@ -171,6 +171,10 @@ export class InfoEnchantement extends React.Component {
                               value={newEnchantement.niveau}
                               onChange={this.handleOnChange} required/>
 
+                    <InputDiv name="damage" label="Dégàt :" type="number" readOnly={!inEdit}
+                              value={newEnchantement.damage}
+                              onChange={this.handleOnChange} required/>
+
                     <TextAreaInput
                         label="Description :"
                         content={newEnchantement.description}

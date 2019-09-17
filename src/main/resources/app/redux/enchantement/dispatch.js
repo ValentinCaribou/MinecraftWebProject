@@ -61,7 +61,7 @@ export const ajoutEnchantement = (enchantement) => {
     return (dispatch) => {
         dispatch(action.setPending(true));
         addEnchantement(enchantement)
-            .then(armor1 => {
+            .then(enchantement1 => {
                     dispatch(action.setEnchantement(enchantement));
                     dispatch(action.setPending(false));
                     dispatch(balanceTonToast("success", "Ajout réussie"));
@@ -79,7 +79,7 @@ export const updateEnchantement = (enchantement) => {
     return (dispatch) => {
         dispatch(action.setPending(true));
         addEnchantement(enchantement)
-            .then(enchatement1 => {
+            .then(enchantement1 => {
                     dispatch(action.setEnchantement(enchantement));
                     dispatch(action.setPending(false));
                     dispatch(balanceTonToast("success", "Mise à jour réussie"));

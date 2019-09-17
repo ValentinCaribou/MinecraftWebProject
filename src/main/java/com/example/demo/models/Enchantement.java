@@ -9,25 +9,28 @@ public class Enchantement {
     private String description;
     private String obtenable;
     private int niveau;
+    private int damage;
     private String image;
 
     public Enchantement() {
     }
 
-    public Enchantement(String nom, String description, String obtenable, int niveau, String image) {
-        this.nom = nom;
-        this.description = description;
-        this.obtenable = obtenable;
-        this.niveau = niveau;
-        this.image = image;
-    }
-
-    public Enchantement(String id, String nom, String description, String obtenable, int niveau, String image) {
+    public Enchantement(String id, String nom, String description, String obtenable, int niveau, int damage, String image) {
         this.id = id;
         this.nom = nom;
         this.description = description;
         this.obtenable = obtenable;
         this.niveau = niveau;
+        this.damage = damage;
+        this.image = image;
+    }
+
+    public Enchantement(String nom, String description, String obtenable, int niveau, int damage, String image) {
+        this.nom = nom;
+        this.description = description;
+        this.obtenable = obtenable;
+        this.niveau = niveau;
+        this.damage = damage;
         this.image = image;
     }
 
@@ -79,6 +82,14 @@ public class Enchantement {
         this.image = image;
     }
 
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
     @Override
     public String toString() {
         return "Enchantement{" +
@@ -87,6 +98,7 @@ public class Enchantement {
                 ", description='" + description + '\'' +
                 ", obtenable='" + obtenable + '\'' +
                 ", niveau=" + niveau +
+                ", damage=" + damage +
                 '}';
     }
 }

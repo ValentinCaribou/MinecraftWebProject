@@ -10,6 +10,7 @@ const defaultEnchantement = {
     description: "",
     obtenable: "",
     niveau: 0,
+    damage: 0,
     image: ""
 };
 const TAILLE_IMAGE_MAX = 2000000;

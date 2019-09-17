@@ -7,6 +7,7 @@ const defaultState = {
         description:'',
         obtenable:'',
         niveau:0,
+        damage:0,
         image:''
     },
     isPending: false
