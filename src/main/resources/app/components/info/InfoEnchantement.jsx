@@ -4,7 +4,6 @@ import {AjoutButton, CancelButton, ConfirmButton, EditButton} from "../buttons/B
 import InputName from "../inputs/input-name/input-name";
 import SelectInput from "../inputs/SelectInput/selectInput";
 import {TextAreaInput} from "../inputs/TextAreaInput/TextAreaInput";
-// import {balanceTonToast} from "../../redux/toast/dispatch";
 
 const TAILLE_IMAGE_MAX = 2000000;
 const HEIGHT_IMAGE = 1000;
@@ -21,7 +20,7 @@ export class InfoEnchantement extends React.Component {
             isUpdated: false,
             nbCoeur:0,
             impair: false,
-            categorie:['Arme', 'Armure', 'Outil']
+            categorie:['Arme', 'Armure', 'Outil', 'Multi Support']
         };
         this.persistEnchantement = this.persistEnchantement.bind(this);
     }

@@ -26,7 +26,7 @@ class Item extends Component {
 
     componentDidMount() {
         this.props.dispatch(getWeapon(this.props.match.params.id));
-        this.props.dispatch(getEnchantementObtention("Arme"));
+        this.props.dispatch(getEnchantementObtention("Arme, Multi Support"));
     }
 
     _deleteEnchantement = (index) => {

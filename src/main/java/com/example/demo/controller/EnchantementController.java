@@ -10,7 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/app/enchantement")
@@ -49,8 +53,20 @@ public class EnchantementController {
      */
     @GetMapping("/obtenable/{obtenable}")
     public List<Enchantement> getByObtenable(@PathVariable("obtenable") String obtenable){
-        List<Enchantement> enchantements = this.enchantementService.getByObtenable(obtenable);
-        return enchantements;
+        System.out.println(obtenable);
+        List<String> listeObtenable = Arrays.asList(obtenable.split(","));
+        List<Enchantement> enchantements = new ArrayList<>();
+        if(listeObtenable.size() == 1){
+            enchantements = this.enchantementService.getByObtenable(obtenable);
+            return enchantements;
+        } else {
+            String secondElement = listeObtenable.get(1).replaceFirst(" ", "");
+            List<Enchantement> listOne = this.enchantementService.getByObtenable(listeObtenable.get(0));
+            List<Enchantement> listTwo = this.enchantementService.getByObtenable(secondElement);
+            List<Enchantement> newList = Stream.concat(listOne.stream(), listTwo.stream())
+                    .collect(Collectors.toList());
+            return newList;
+        }
     }
 
     /**
