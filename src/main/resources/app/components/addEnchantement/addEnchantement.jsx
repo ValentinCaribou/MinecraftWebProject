@@ -30,23 +30,6 @@ class AddEnchantement extends Component {
         }
     }
 
-    // ingredientDoublon(listeIngredient){
-    //     let ingredientDejaPresent = false;
-    //     listeIngredient.map(ingredient => {
-    //         if (ingredient.toLowerCase() === this.state.ajoutIngredient.toLowerCase()){
-    //             ingredientDejaPresent = true;
-    //         }
-    //     });
-    //     return ingredientDejaPresent;
-    // }
-
-    // handleInput = (event) => {
-    //     event.preventDefault();
-    //     let ingredient;
-    //     ingredient = event.target.value;
-    //     this.setState({ajoutIngredient: ingredient});
-    // };
-
     handleSubmit() {
         let {enchantements, enchantement} = this.state;
         if (this.state.EnchantementVide){
