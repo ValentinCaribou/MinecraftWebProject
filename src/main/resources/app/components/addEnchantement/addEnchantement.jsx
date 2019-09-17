@@ -53,15 +53,35 @@ class AddEnchantement extends Component {
             if (enchantement === undefined){
                 this.props.dispatch(balanceTonToast("error", "Veuillez saisir un enchantement valide"));
             } else {
-                this.state.EnchantementDejaPresent.push(enchantement);
-                enchantements.map((unEnchantement, index) => {
-                    if (unEnchantement.id === enchantement.id){
-                        enchantements.splice(index, 1);
-                    }
-                });
-                this.setState({enchantements});
-                this.props.dispatch(balanceTonToast("success", "Enchantement ajouter"));
-                this.props.onChange(enchantement);
+                if (this.state.EnchantementDejaPresent.length !== 0){
+                    this.state.EnchantementDejaPresent.map((unEnchantement, index) => {
+                        let nomEnchantement = unEnchantement.nom.split(" ");
+                        let nomNewEnchantement = enchantement.nom.split(" ");
+                        if(((nomEnchantement[0].includes("Sharpness")) && (nomNewEnchantement[0].includes("Smite") || nomNewEnchantement[0].includes("smite"))) ||
+                            ((nomEnchantement[0].includes("Smite") || nomEnchantement[0].includes("smite")) && nomNewEnchantement[0].includes("Sharpness")) ||
+                            ((nomEnchantement[0].includes("Smite") || nomEnchantement[0].includes("smite")) && (nomNewEnchantement[0].includes("Bane") || nomNewEnchantement[0].includes("bane"))) ||
+                            ((nomEnchantement[0].includes("Bane") || nomEnchantement[0].includes("bane")) && (nomNewEnchantement[0].includes("smite") || nomNewEnchantement[0].includes("Smite"))) ||
+                            ((nomEnchantement[0].includes("Sharpness")) && (nomNewEnchantement[0].includes("bane") || nomNewEnchantement[0].includes("Bane"))) ||
+                            ((nomEnchantement[0].includes("bane") || nomEnchantement[0].includes("Bane")) && nomNewEnchantement[0].includes("Sharpness"))){
+                            this.props.dispatch(balanceTonToast("error", "Enchantement incompatible"));
+                        } else {
+                            this.state.EnchantementDejaPresent.push(enchantement);
+                            enchantements.map((unEnchantement, index) => {
+                                if (unEnchantement.id === enchantement.id){
+                                    enchantements.splice(index, 1);
+                                }
+                            });
+                            this.setState({enchantements});
+                            this.props.dispatch(balanceTonToast("success", "Enchantement ajouter"));
+                            this.props.onChange(enchantement);
+                        }
+                    });
+                } else {
+                    this.state.EnchantementDejaPresent.push(enchantement);
+                    this.setState({enchantements});
+                    this.props.dispatch(balanceTonToast("success", "Enchantement ajouter"));
+                    this.props.onChange(enchantement);
+                }
             }
         } else {
             this.props.dispatch(balanceTonToast("error", "Veuillez saisir un enchantement valide"));
@@ -91,9 +111,6 @@ class AddEnchantement extends Component {
             enchantements = this.state.enchantements
         }
 
-        // if (!this.state.EnchantementVide){
-        //     enchantement = '';
-        // }
         return (
             <>
                 <div className="input-ingredient-container">
