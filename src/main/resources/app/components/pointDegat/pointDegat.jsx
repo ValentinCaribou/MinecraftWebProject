@@ -6,7 +6,7 @@ import './pointDegat.css'
 const PointDegat = ({nbCoeur, impair}) => {
     let rows = [];
     for (let i = 0; i < nbCoeur; i++) {
-        rows.push(<img className="imageHeart" src={Heart}/>);
+        rows.push(<img key={i} className="imageHeart" src={Heart}/>);
     }
     return (
         <div className="input-div">
