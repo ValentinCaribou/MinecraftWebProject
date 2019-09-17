@@ -17,6 +17,7 @@ export class InfoWeapon extends React.Component {
         super(props);
         this.state = {
             newWeapon: {...this.props.weapons},
+            enchantement: this.props.bonus,
             inEdit: this.props.creatingWeapon,
             isFormatPortrait: true,
             isUpdated: false,
@@ -30,7 +31,8 @@ export class InfoWeapon extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps !== this.props){
             this.setState({newWeapon: {...this.props.weapons}});
-            this.transformeNumber(this.props.weapons.damage);
+            let numberDamage = this.props.weapons.damage + this.props.bonus;
+            this.transformeNumber(numberDamage);
         }
     }
 
@@ -214,9 +216,7 @@ export class InfoWeapon extends React.Component {
 
                         {
                             !inEdit &&
-                            // <div className="action-modif-profil">
-                                <EditButton callback={this.handleEditOnClick}/>
-                            //</div>
+                            <EditButton callback={this.handleEditOnClick}/>
                         }
 
                         {

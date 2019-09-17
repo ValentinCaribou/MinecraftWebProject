@@ -19,6 +19,7 @@ class Item extends Component {
             inAdd: false,
             inEdit: false,
             isShowPopup: false,
+            bonusDegat:0,
             listeEnchantementEquiper: [],
         };
     }
@@ -44,13 +45,17 @@ class Item extends Component {
     };
 
     addEnchantement = (enchantement) => {
-        console.log(enchantement);
         this.state.listeEnchantementEquiper.push(enchantement);
+        let degat = 0;
+        this.state.listeEnchantementEquiper.forEach(equipement => {
+            degat = degat + equipement.damage;
+        });
+        this.setState({bonusDegat: degat});
     };
 
     render() {
         let {weapon, isLoading, dispatch, enchantements, enchantement} = this.props;
-        const {inAdd, listeEnchantementEquiper} = this.state;
+        const {inAdd, listeEnchantementEquiper, bonusDegat} = this.state;
         return (
             <>
                 <div id="white-pattern"></div>
@@ -67,6 +72,7 @@ class Item extends Component {
                                         <InfoWeapon
                                             dispatch={this.props.dispatch}
                                             weapons={weapon}
+                                            bonus={bonusDegat}
                                             isFormatPortrait={this.state.isFormatPortrait}
                                             updateWeapon={this.updateWeapon}
                                             creatingWeapon={false}
