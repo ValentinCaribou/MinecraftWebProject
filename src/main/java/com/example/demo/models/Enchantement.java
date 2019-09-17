@@ -9,13 +9,13 @@ public class Enchantement {
     private String description;
     private String obtenable;
     private int niveau;
-    private int damage;
+    private float damage;
     private String image;
 
     public Enchantement() {
     }
 
-    public Enchantement(String id, String nom, String description, String obtenable, int niveau, int damage, String image) {
+    public Enchantement(String id, String nom, String description, String obtenable, int niveau, float damage, String image) {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -25,7 +25,7 @@ public class Enchantement {
         this.image = image;
     }
 
-    public Enchantement(String nom, String description, String obtenable, int niveau, int damage, String image) {
+    public Enchantement(String nom, String description, String obtenable, int niveau, float damage, String image) {
         this.nom = nom;
         this.description = description;
         this.obtenable = obtenable;
@@ -82,11 +82,11 @@ public class Enchantement {
         this.image = image;
     }
 
-    public int getDamage() {
+    public float getDamage() {
         return damage;
     }
 
-    public void setDamage(int damage) {
+    public void setDamage(float damage) {
         this.damage = damage;
     }
 
