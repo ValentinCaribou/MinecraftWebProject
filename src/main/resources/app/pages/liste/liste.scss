@@ -38,12 +38,12 @@
 
       .rounded-image-repas {
         overflow: hidden;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        border-radius: 50%;
+        //-webkit-border-radius: 50%;
+        //-moz-border-radius: 50%;
+        //border-radius: 50%;
         width: 120px;
         height: 120px;
-        border: 1px solid gray;
+        //border: 1px solid gray;
         display: flex;
         align-items: center;
 
@@ -103,8 +103,9 @@
   margin-left: 10%;
   font-family: MinecraftiaRegular, sans-serif;
   color: white;
+  font-size: 1em;
   font-weight: normal;
-  padding-left: 3px;
+  padding-left: 6px;
   width: 80%;
   margin-bottom: 0;
   background-color: rgba(0,0,0,0.3);

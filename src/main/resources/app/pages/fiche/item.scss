@@ -29,9 +29,9 @@
 
         .roundedImageFiche {
           overflow: hidden;
-          -webkit-border-radius: 50%;
-          -moz-border-radius: 50%;
-          border-radius: 50%;
+          //-webkit-border-radius: 50%;
+          //-moz-border-radius: 50%;
+          //border-radius: 50%;
           width: 160px;
           height: 160px;
           line-height: normal;
@@ -39,7 +39,7 @@
           justify-content: center;
           align-items: center;
           margin-bottom: 0.5em;
-          border: 1px solid gray;
+          //border: 1px solid gray;
 
           .middle {
             width: 100%;
