@@ -8,16 +8,51 @@ import {getEnchantements} from "../../redux/enchantement/dispatch";
 class ListeEnchantements extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            value:'',
+            target:''
+        }
     }
 
     componentDidMount() {
         this.props.dispatch(getEnchantements());
     }
 
+    updateInput = (event) => {
+        const props = this.props;
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        this.setState({value, target});
+    };
+
+    filter = () => {
+        const {enchantements} = this.props;
+        const {value, target} = this.state;
+        let filteredEnchantement = enchantements;
+
+        filteredEnchantement = filteredEnchantement.filter(enchantement => enchantement.nom.toUpperCase().includes(value.toUpperCase()));
+
+        return filteredEnchantement;
+    };
+
     render() {
         const {enchantements, isPending} = this.props;
+        let {value} = this.state;
+        let filteredEnchantement;
+        if(enchantements !== undefined){
+            filteredEnchantement = this.filter();
+            console.log(filteredEnchantement);
+        }
         return (
             <div className="table-search">
+                <div>
+                    <input className="input-search" type="text" name="critere"
+                           placeholder="Nom de l'enchantement"
+                           onChange={this.updateInput}
+                           value={value}
+                    />
+                </div>
                 <div className="list-repas">
                     {
                         isPending ? (
@@ -27,9 +62,9 @@ class ListeEnchantements extends Component {
                             (<>
                                     <section className="card">
                                         {
-                                            enchantements !== undefined ?
-                                            enchantements.length > 0 ?
-                                                enchantements.map((item) => {
+                                            filteredEnchantement !== undefined ?
+                                                filteredEnchantement.length > 0 ?
+                                                    filteredEnchantement.map((item) => {
                                                     return <Item key={item.id}
                                                                  dispatch={this.props.dispatch}
                                                                  item={item}/>
