@@ -31,8 +31,11 @@ class ListeEnchantements extends Component {
         const {value, target} = this.state;
         let filteredEnchantement = enchantements;
 
-        filteredEnchantement = filteredEnchantement.filter(enchantement => enchantement.nom.toUpperCase().includes(value.toUpperCase()));
-
+        if(!isNaN(parseInt(value))){
+            filteredEnchantement = filteredEnchantement.filter(enchantement => enchantement.niveau === parseInt(value));
+        } else {
+            filteredEnchantement = filteredEnchantement.filter(enchantement => enchantement.nom.toUpperCase().includes(value.toUpperCase()));
+        }
         return filteredEnchantement;
     };
 
@@ -42,13 +45,12 @@ class ListeEnchantements extends Component {
         let filteredEnchantement;
         if(enchantements !== undefined){
             filteredEnchantement = this.filter();
-            console.log(filteredEnchantement);
         }
         return (
             <div className="table-search">
                 <div>
                     <input className="input-search" type="text" name="critere"
-                           placeholder="Nom de l'enchantement"
+                           placeholder="Nom de l'enchantement ou niveau"
                            onChange={this.updateInput}
                            value={value}
                     />
