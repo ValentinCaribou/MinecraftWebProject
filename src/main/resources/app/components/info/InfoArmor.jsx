@@ -21,6 +21,7 @@ export class InfoArmor extends React.Component {
             isUpdated: false,
             nbArmor:0,
             impair: false,
+            resistance:this.props.armors.resistance,
             categorie:['Arme', 'Armure', 'Outil', 'Bloc']
         };
         this.persistArmor = this.persistArmor.bind(this);
@@ -29,6 +30,9 @@ export class InfoArmor extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps !== this.props){
             this.setState({newArmor: {...this.props.armors}});
+            let numberDamage = Number(this.props.armors.resistance) + Number(this.props.bonusResistance);
+            console.log(numberDamage);
+            this.setState({resistance: numberDamage});
             this.transformeNumber(this.props.armors.pointOfDefense);
         }
     }
@@ -139,6 +143,12 @@ export class InfoArmor extends React.Component {
     render() {
         const {creatingArmor, verifFormatImage} = this.props;
         const {newArmor, inEdit, isUpdated, isFormatPortrait, categorie, impair, nbArmor} = this.state;
+        let resistance;
+        if (this.state.resistance === 0){
+            resistance = this.props.armors.resistance;
+        } else {
+            resistance = this.state.resistance;
+        }
         return (
 
             <>
@@ -183,7 +193,7 @@ export class InfoArmor extends React.Component {
                     />
 
                     <InputDiv name="resistance" label="resistance :" type="number" readOnly={!inEdit}
-                              value={newArmor.resistance}
+                              value={resistance}
                               onChange={this.handleOnChange} required/>
 
                     <InputDiv name="pointOfDefense" label="Point de défence :" type="number" readOnly={!inEdit}

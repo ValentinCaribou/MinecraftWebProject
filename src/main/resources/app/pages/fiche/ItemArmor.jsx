@@ -9,6 +9,8 @@ import {getArmor, updateArmor} from "../../redux/armors/dispatch";
 import {getEnchantementObtention} from "../../redux/enchantement/dispatch";
 import InputDiv from "../../components/inputs/input-div";
 import PointDegat from "../../components/pointDegat/pointDegat";
+import AddEnchantement from "../../components/addEnchantement/addEnchantement";
+import Enchantement from "../../components/Enchantement/Enchantement";
 
 
 class Item extends Component {
@@ -22,6 +24,7 @@ class Item extends Component {
             isShowPopup: false,
             value:"",
             bonusDefense:0,
+            bonusResistance:0,
             degatsSubisComplet:0,
             degatsSubis:0,
             impair: false,
@@ -41,11 +44,19 @@ class Item extends Component {
 
     addEnchantement = (enchantement) => {
         this.state.listeEnchantementEquiper.push(enchantement);
-        let defense = 0;
-        this.state.listeEnchantementEquiper.forEach(equipement => {
-            defense = degat + equipement.damage;
-        });
-        this.setState({bonusDegat: degat});
+        let bonusResistance = 0;
+        if(enchantement.nom.toLowerCase().includes("unbreaking")){
+            let level = enchantement.nom.split(" ");
+            if(level[1] === "I"){
+                bonusResistance = Math.round(this.props.armor.resistance * 0.25);
+                console.log(bonusResistance)
+            } else if(level[1] === "II"){
+                bonusResistance = Math.round(this.props.armor.resistance * 0.36);
+            } else {
+                bonusResistance = Math.round(this.props.armor.resistance * 0.47);
+            }
+        }
+        this.setState({bonusResistance});
     };
 
     handleOnChange = (e) => {
@@ -102,8 +113,8 @@ class Item extends Component {
     };
 
     render() {
-        let {isLoading, dispatch, armor} = this.props;
-        let {value, inEdit, degatsSubisComplet, degatsSubis, impair, impairComplet} = this.state;
+        let {isLoading, dispatch, armor, enchantements, enchantement} = this.props;
+        let {value, inEdit, degatsSubisComplet, listeEnchantementEquiper, degatsSubis, impair, impairComplet, bonusResistance} = this.state;
         const {inAdd} = this.state;
         return (
             <>
@@ -121,6 +132,7 @@ class Item extends Component {
                                         <InfoArmor
                                             dispatch={this.props.dispatch}
                                             armors={armor}
+                                            bonusResistance={bonusResistance}
                                             isFormatPortrait={this.state.isFormatPortrait}
                                             updateArmor={this.updateArmor}
                                             creatingWeapon={false}
@@ -148,6 +160,42 @@ class Item extends Component {
 
                                     </div>
                                 </div>
+                                <div className="repas-fiche-deuxiemeColonne">
+                                    <div className="repas-participant container-white">
+                                        <div className="chips">
+                                            <label>Enchantement disponible : </label>
+                                            <AddEnchantement
+                                                dispatch={this.props.dispatch}
+                                                enchantements={enchantements}
+                                                enchantement={enchantement}
+                                                onChange={this.addEnchantement}
+                                            />
+                                        </div>
+                                        <div className="chips">
+                                            <label>Enchantement ajouter : </label>
+                                            <div className="ingredient">
+                                                {
+                                                    !listeEnchantementEquiper.empty() ?
+                                                        listeEnchantementEquiper.sort(function (a, b) {
+                                                            return !a ? 1 : !b;
+                                                        }).map((enchantement, index) => {
+                                                            return (
+                                                                <Enchantement
+                                                                    key={index}
+                                                                    idEnchantement={index}
+                                                                    onDelete={this._deleteEnchantement}
+                                                                    readOnly={inAdd}
+                                                                    enchantement={enchantement}
+                                                                />
+                                                            )
+                                                        })
+                                                        :
+                                                        <i>Aucun enchantement attribuer pour le moment.</i>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </>
                     }
                 </div>
@@ -161,6 +209,8 @@ const mapStateToProps = (state) => {
     return {
         weapon: state.weaponsReducers.weapon,
         armor: state.armorsReducers.armor,
+        enchantements: state.enchantementReducer.enchantements,
+        enchantement: state.enchantementReducer.enchantement,
     }
 };
 export default connect(mapStateToProps)(Item);

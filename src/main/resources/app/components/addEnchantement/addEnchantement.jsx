@@ -48,7 +48,11 @@ class AddEnchantement extends Component {
                             ((nomEnchantement[0].includes("bane") || nomEnchantement[0].includes("Bane")) && nomNewEnchantement[0].includes("Sharpness"))){
                             this.props.dispatch(balanceTonToast("error", "Enchantement incompatible"));
                         } else {
-                            this.state.EnchantementDejaPresent.push(enchantement);
+                            this.state.EnchantementDejaPresent.map(enchantementPresent => {
+                                if(enchantementPresent.id !== unEnchantement.id){
+                                    this.state.EnchantementDejaPresent.push(enchantement);
+                                }
+                            });
                             enchantements.map((unEnchantement, index) => {
                                 if (unEnchantement.id === enchantement.id){
                                     enchantements.splice(index, 1);
@@ -61,6 +65,11 @@ class AddEnchantement extends Component {
                     });
                 } else {
                     this.state.EnchantementDejaPresent.push(enchantement);
+                    enchantements.map((unEnchantement, index) => {
+                        if (unEnchantement.id === enchantement.id){
+                            enchantements.splice(index, 1);
+                        }
+                    });
                     this.setState({enchantements});
                     this.props.dispatch(balanceTonToast("success", "Enchantement ajouter"));
                     this.props.onChange(enchantement);

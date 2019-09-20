@@ -69,7 +69,6 @@ export class InfoWeapon extends React.Component {
     };
 
     transformeNumber = (number) => {
-        console.log(number);
         let nombreFinal = number;
         if (number !== 0){
             if (number%2 === 0){
