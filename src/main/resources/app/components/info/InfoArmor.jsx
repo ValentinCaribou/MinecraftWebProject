@@ -177,7 +177,7 @@ export class InfoArmor extends React.Component {
                         type="text"
                         id="categorieItem"
                         name="categorie"
-                        valeurDefaut="Armure"
+                        valeurDefaut="-- Sectionner une catégorie --"
                         onChange={this.handleOnChange}
                         boucle={categorie}
                     />

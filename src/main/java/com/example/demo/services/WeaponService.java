@@ -77,13 +77,13 @@ public class WeaponService {
 //                .ifPresent((codeError) -> errorList.add(codeError));
 
         Function<Weapons, Weapons> function = (weapons1) -> {
-            if (weapons1.getImage() != null) {
-                if (weapons1.getImage().indexOf("data:image") == 0) {
-                    if (!verifTailleImage(convertStringToImageByteArray(weapons1.getImage()))) {
-                        weapons1.setImage(null);
-                    }
-                }
-            }
+//            if (weapons1.getImage() != null) {
+//                if (weapons1.getImage().indexOf("data:image") == 0) {
+//                    if (!verifTailleImage(convertStringToImageByteArray(weapons1.getImage()))) {
+//                        weapons1.setImage(null);
+//                    }
+//                }
+//            }
             return weaponRepo.save(weapons);
         };
         return handleResult(weapons, errorList, function);

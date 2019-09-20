@@ -31,7 +31,7 @@ export class InfoWeapon extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps !== this.props){
             this.setState({newWeapon: {...this.props.weapons}});
-            let numberDamage = this.props.weapons.damage + this.props.bonus;
+            let numberDamage = Number(this.props.weapons.damage) + Number(this.props.bonus);
             this.transformeNumber(numberDamage);
         }
     }
@@ -69,6 +69,7 @@ export class InfoWeapon extends React.Component {
     };
 
     transformeNumber = (number) => {
+        console.log(number);
         let nombreFinal = number;
         if (number !== 0){
             if (number%2 === 0){
@@ -181,7 +182,7 @@ export class InfoWeapon extends React.Component {
                         type="text"
                         id="categorieItem"
                         name="categorie"
-                        valeurDefaut="Arme"
+                        valeurDefaut="-- Sélectionner une catégorie --"
                         onChange={this.handleOnChange}
                         boucle={categorie}
                     />

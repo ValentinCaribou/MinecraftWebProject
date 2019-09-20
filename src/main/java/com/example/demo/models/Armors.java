@@ -72,6 +72,7 @@ public class Armors extends Items {
         return "Armors{" +
                 "id=" + id +
                 ", nom=" + getNom() +
+                ", categorie=" + getCategorie() +
                 ", resistance=" + resistance +
                 ", pointOfDefense=" + pointOfDefense +
                 '}';
