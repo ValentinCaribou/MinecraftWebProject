@@ -24,7 +24,7 @@ export class InfoEnchantement extends React.Component {
             impair: false,
             categorie:['Arme', 'Armure', 'Outil', 'Multi Support'],
             incompatible: [],
-            listeDesIncompatible: [],
+            listeDesIncompatible: this.props.enchantements.incompatible,
         };
         this.persistEnchantement = this.persistEnchantement.bind(this);
     }
@@ -32,6 +32,7 @@ export class InfoEnchantement extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps !== this.props){
             this.setState({newEnchantement: {...this.props.enchantements}});
+            this.setState({listeDesIncompatible: this.props.enchantements.incompatible});
             this.setState({ListeEnchantement: {...this.props.listeDesEnchantement}});
             this.getListeIncompatible();
         }
