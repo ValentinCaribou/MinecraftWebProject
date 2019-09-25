@@ -24,7 +24,7 @@ export class InfoEnchantement extends React.Component {
             impair: false,
             categorie:['Arme', 'Armure', 'Outil', 'Multi Support'],
             incompatible: [],
-            listeDesIncompatible: this.props.enchantements.incompatible,
+            listeDesIncompatible: [],
         };
         this.persistEnchantement = this.persistEnchantement.bind(this);
     }
@@ -32,7 +32,11 @@ export class InfoEnchantement extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps !== this.props){
             this.setState({newEnchantement: {...this.props.enchantements}});
-            this.setState({listeDesIncompatible: this.props.enchantements.incompatible});
+            if(this.props.enchantements.incompatible === null){
+                this.setState({listeDesIncompatible: []});
+            } else {
+                this.setState({listeDesIncompatible: this.props.enchantements.incompatible});
+            }
             this.setState({ListeEnchantement: {...this.props.listeDesEnchantement}});
             this.getListeIncompatible();
         }
@@ -218,14 +222,17 @@ export class InfoEnchantement extends React.Component {
                         <label>Enchantement incompatible avec : </label>
                         <div className="enchantement">
                             {
-                                !listeDesIncompatible.empty() ?
-                                    listeDesIncompatible.sort(function (a, b) {
-                                        return !a ? 1 : !b;
-                                    }).map((enchantement, index) => {
-                                        return (
-                                            <label className="nomEnchantement">{enchantement}</label>
-                                        )
-                                    })
+                                listeDesIncompatible !== null ?
+                                    !listeDesIncompatible.empty() ?
+                                        listeDesIncompatible.sort(function (a, b) {
+                                            return !a ? 1 : !b;
+                                        }).map((enchantement, index) => {
+                                            return (
+                                                <label className="nomEnchantement">{enchantement}</label>
+                                            )
+                                        })
+                                        :
+                                        <i>Aucun enchantement attribuer pour le moment.</i>
                                     :
                                     <i>Aucun enchantement attribuer pour le moment.</i>
                             }
