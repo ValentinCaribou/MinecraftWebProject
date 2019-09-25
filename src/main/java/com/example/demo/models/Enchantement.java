@@ -2,6 +2,8 @@ package com.example.demo.models;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
+
 public class Enchantement {
     @Id
     private String id;
@@ -11,6 +13,7 @@ public class Enchantement {
     private int niveau;
     private float damage;
     private String image;
+    private List<String> incompatible;
 
     public Enchantement() {
     }
@@ -32,6 +35,16 @@ public class Enchantement {
         this.niveau = niveau;
         this.damage = damage;
         this.image = image;
+    }
+
+    public Enchantement(String nom, String description, String obtenable, int niveau, float damage, String image, List<String> incompatible) {
+        this.nom = nom;
+        this.description = description;
+        this.obtenable = obtenable;
+        this.niveau = niveau;
+        this.damage = damage;
+        this.image = image;
+        this.incompatible = incompatible;
     }
 
     public String getId() {
@@ -90,6 +103,14 @@ public class Enchantement {
         this.damage = damage;
     }
 
+    public List<String> getIncompatible() {
+        return incompatible;
+    }
+
+    public void setIncompatible(List<String> incompatible) {
+        this.incompatible = incompatible;
+    }
+
     @Override
     public String toString() {
         return "Enchantement{" +
@@ -99,6 +120,7 @@ public class Enchantement {
                 ", obtenable='" + obtenable + '\'' +
                 ", niveau=" + niveau +
                 ", damage=" + damage +
+                ", incompatible=" + incompatible +
                 '}';
     }
 }

@@ -8,6 +8,7 @@ const defaultState = {
         obtenable:'',
         niveau:0,
         damage:0,
+        incompatible: [],
         image:''
     },
     isPending: false

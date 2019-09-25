@@ -9,7 +9,7 @@ import {getArmor, updateArmor} from "../../redux/armors/dispatch";
 import {getEnchantementObtention} from "../../redux/enchantement/dispatch";
 import InputDiv from "../../components/inputs/input-div";
 import PointDegat from "../../components/pointDegat/pointDegat";
-import AddEnchantement from "../../components/addEnchantement/addEnchantement";
+import AddEnchantementItem from "../../components/addEnchantement/addEnchantementItem";
 import Enchantement from "../../components/Enchantement/Enchantement";
 
 
@@ -164,7 +164,7 @@ class Item extends Component {
                                     <div className="repas-participant container-white">
                                         <div className="chips">
                                             <label>Enchantement disponible : </label>
-                                            <AddEnchantement
+                                            <AddEnchantementItem
                                                 dispatch={this.props.dispatch}
                                                 enchantements={enchantements}
                                                 enchantement={enchantement}

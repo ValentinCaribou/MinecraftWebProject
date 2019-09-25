@@ -4,6 +4,7 @@ import {AjoutButton, CancelButton, ConfirmButton, EditButton} from "../buttons/B
 import InputName from "../inputs/input-name/input-name";
 import SelectInput from "../inputs/SelectInput/selectInput";
 import {TextAreaInput} from "../inputs/TextAreaInput/TextAreaInput";
+import Enchantement from "../Enchantement/Enchantement";
 
 const TAILLE_IMAGE_MAX = 2000000;
 const HEIGHT_IMAGE = 1000;
@@ -15,12 +16,15 @@ export class InfoEnchantement extends React.Component {
         super(props);
         this.state = {
             newEnchantement: {...this.props.enchantements},
+            ListeEnchantement: {...this.props.listeDesEnchantement},
             inEdit: this.props.createEnchantement,
             isFormatPortrait: true,
             isUpdated: false,
             nbCoeur:0,
             impair: false,
-            categorie:['Arme', 'Armure', 'Outil', 'Multi Support']
+            categorie:['Arme', 'Armure', 'Outil', 'Multi Support'],
+            incompatible: [],
+            listeDesIncompatible: [],
         };
         this.persistEnchantement = this.persistEnchantement.bind(this);
     }
@@ -28,13 +32,21 @@ export class InfoEnchantement extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps !== this.props){
             this.setState({newEnchantement: {...this.props.enchantements}});
+            this.setState({ListeEnchantement: {...this.props.listeDesEnchantement}});
+            this.getListeIncompatible();
         }
     }
 
     persistEnchantement = (name, value) => {
         const newEnchantement = {...this.state.newEnchantement};
-        newEnchantement[name] = value;
+        if(name === "incompatible"){
+            this.state.listeDesIncompatible.push(value);
+            newEnchantement[name] = this.state.listeDesIncompatible;
+        } else {
+            newEnchantement[name] = value;
+        }
         this.setState({newEnchantement, isUpdated: true});
+        this.state.newEnchantement.incompatible = this.state.listeDesIncompatible;
     };
 
     handleOnChange = (e) => {
@@ -57,6 +69,31 @@ export class InfoEnchantement extends React.Component {
     handleCancelOnClick = () => {
         const enchantement = {...this.props.enchantements};
         this.setState({newEnchantement: enchantement, inEdit: false});
+    };
+
+    getListeIncompatible = () => {
+        let {listeDesEnchantement} = this.props;
+        let listeEnchantementIncompatible = this.state.incompatible;
+        if(listeDesEnchantement !== undefined){
+            listeDesEnchantement.map(enchantement => {
+                let nomEnchantement = enchantement.nom.split(" ");
+                if(!listeEnchantementIncompatible.includes(nomEnchantement[0].toLowerCase())){
+                    if(nomEnchantement[0].toLowerCase() === "fire"){
+                        if (!listeEnchantementIncompatible.includes("fire aspect")){
+                            listeEnchantementIncompatible.push(nomEnchantement[0].toLowerCase() + " " + nomEnchantement[1].toLowerCase());
+                        }
+                    } else if(nomEnchantement[0].toLowerCase() === "bane"){
+                        if (!listeEnchantementIncompatible.includes("bane of arthropods")){
+                            listeEnchantementIncompatible.push(nomEnchantement[0].toLowerCase() + " " + nomEnchantement[1].toLowerCase() + " " + nomEnchantement[2].toLowerCase())
+                        }
+                    } else {
+                        listeEnchantementIncompatible.push(nomEnchantement[0].toLowerCase());
+                    }
+                }
+            });
+            this.setState({incompatible: listeEnchantementIncompatible});
+            return listeEnchantementIncompatible;
+        }
     };
 
     getImage = (e) => {
@@ -116,15 +153,14 @@ export class InfoEnchantement extends React.Component {
     };
 
     render() {
-        const {creatingEnchantement, verifFormatImage} = this.props;
-        const {newEnchantement, inEdit, isUpdated, isFormatPortrait, categorie} = this.state;
+        const {creatingEnchantement, verifFormatImage, listeDesEnchantement} = this.props;
+        const {newEnchantement, inEdit, isUpdated, isFormatPortrait, categorie, incompatible, listeDesIncompatible} = this.state;
         let categorieObtenable = newEnchantement.obtenable;
         if (categorieObtenable === null || categorieObtenable === ''){
             categorieObtenable = "-- Selectionner une catégorie --"
         }
 
         return (
-
             <>
                 <div className="div-info">
                     <label className="button-image">
@@ -165,6 +201,35 @@ export class InfoEnchantement extends React.Component {
                         onChange={this.handleOnChange}
                         boucle={categorie}
                     />
+
+                    <SelectInput
+                        className="input-div"
+                        label="Incompatible avec :"
+                        type="text"
+                        id="categorieItem"
+                        name="incompatible"
+                        valeurDefaut="-- Selectionner une catégorie --"
+                        onChange={this.handleOnChange}
+                        boucle={incompatible}
+                    />
+
+                    <div className="chips">
+                        <label>Enchantement incompatible avec : </label>
+                        <div className="enchantement">
+                            {
+                                !listeDesIncompatible.empty() ?
+                                    listeDesIncompatible.sort(function (a, b) {
+                                        return !a ? 1 : !b;
+                                    }).map((enchantement, index) => {
+                                        return (
+                                            <label className="nomEnchantement">{enchantement}</label>
+                                        )
+                                    })
+                                    :
+                                    <i>Aucun enchantement attribuer pour le moment.</i>
+                            }
+                        </div>
+                    </div>
 
                     <InputDiv name="niveau" label="Niveau :" type="number" readOnly={!inEdit}
                               value={newEnchantement.niveau}

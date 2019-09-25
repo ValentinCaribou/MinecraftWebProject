@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import './item.scss'
 import IsPending from "../../components/isPending/isPending";
 import {InfoEnchantement} from "../../components/info/InfoEnchantement";
-import {getEnchantement, updateEnchantement} from "../../redux/enchantement/dispatch";
+import {getEnchantement, getEnchantements, updateEnchantement} from "../../redux/enchantement/dispatch";
 
 
 class ItemEnchantement extends Component {
@@ -21,6 +21,7 @@ class ItemEnchantement extends Component {
 
     componentDidMount() {
         this.props.dispatch(getEnchantement(this.props.match.params.id));
+        this.props.dispatch(getEnchantements())
     }
 
     updateEnchantement = (enchantement) => {
@@ -28,7 +29,7 @@ class ItemEnchantement extends Component {
     };
 
     render() {
-        let {isLoading, dispatch, enchantement} = this.props;
+        let {isLoading, dispatch, enchantement, enchantements} = this.props;
         const {inAdd} = this.state;
         return (
             <>
@@ -46,6 +47,7 @@ class ItemEnchantement extends Component {
                                         <InfoEnchantement
                                             dispatch={this.props.dispatch}
                                             enchantements={enchantement}
+                                            listeDesEnchantement={enchantements}
                                             isFormatPortrait={this.state.isFormatPortrait}
                                             updateEnchantement={this.updateEnchantement}
                                             createEnchantement={false}
@@ -64,6 +66,7 @@ class ItemEnchantement extends Component {
 const mapStateToProps = (state) => {
     return {
         enchantement: state.enchantementReducer.enchantement,
+        enchantements: state.enchantementReducer.enchantements,
     }
 };
 export default connect(mapStateToProps)(ItemEnchantement);

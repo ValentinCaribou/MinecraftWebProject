@@ -6,7 +6,7 @@ import IsPending from "../../components/isPending/isPending";
 import {InfoWeapon} from "../../components/info/InfoWeapon";
 import {updateWeapon,getWeapon} from "../../redux/weapons/dispatch";
 import {getEnchantementObtention, getEnchantement} from "../../redux/enchantement/dispatch";
-import AddEnchantement from '../../components/addEnchantement/addEnchantement'
+import AddEnchantementItem from '../../components/addEnchantement/addEnchantementItem'
 import Enchantement from "../../components/Enchantement/Enchantement";
 
 
@@ -83,7 +83,7 @@ class Item extends Component {
                                     <div className="repas-participant container-white">
                                         <div className="chips">
                                             <label>Enchantement disponible : </label>
-                                            <AddEnchantement
+                                            <AddEnchantementItem
                                                 dispatch={this.props.dispatch}
                                                 enchantements={enchantements}
                                                 enchantement={enchantement}

@@ -24,7 +24,8 @@ public enum CodeErreurAppli {
     XDC("XDC","Enchantement's name is not valid "),
     XDD("XDD","Enchantement's description is not valid "),
     XDE("XDE","Enchantement's obtention is not valid "),
-    XDF("XDF","Enchantement's level of defense is not valid ");
+    XDF("XDF","Enchantement's level of defense is not valid "),
+    XDG("XDG","Enchantement's incompatble list is not valid ");
 
 
     private String code;

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {ajoutEnchantement} from "../../app/redux/enchantement/dispatch";
 import {AddButton, CancelButton, BackButtonArrow} from "../components/buttons/Buttons";
 import IsPending from "../components/isPending/isPending";
+import {getEnchantements} from "../redux/enchantement/dispatch";
 import {InfoEnchantement} from "../components/info/InfoEnchantement";
 
 const defaultEnchantement = {
@@ -11,6 +12,7 @@ const defaultEnchantement = {
     obtenable: "",
     niveau: 0,
     damage: 0,
+    incompatible: [],
     image: ""
 };
 const TAILLE_IMAGE_MAX = 2000000;
@@ -30,11 +32,16 @@ class AddEnchantement extends Component {
         };
     }
 
+    componentDidMount() {
+        this.props.dispatch(getEnchantements())
+    }
+
     togglePopup() {
         this.setState({isShowPopup: !this.state.isShowPopup})
     };
 
     createEnchantement = (enchantement) => {
+        console.log(enchantement);
         const {dispatch} = this.props;
         if (this.state.isShowPopup) {
             this.togglePopup();
@@ -51,7 +58,7 @@ class AddEnchantement extends Component {
     };
 
     render() {
-        let {isLoading} = this.props;
+        let {isLoading, enchantements} = this.props;
         let {inAdd, enchantement} = this.state;
         return (
             <>
@@ -67,6 +74,7 @@ class AddEnchantement extends Component {
                                         <InfoEnchantement
                                             dispatch={this.props.dispatch}
                                             enchantements={enchantement}
+                                            listeDesEnchantement={enchantements}
                                             isFormatPortrait={this.state.isFormatPortrait}
                                             // getImage={this.getImage}
                                             updateEnchantement={this.createEnchantement}
@@ -84,6 +92,7 @@ class AddEnchantement extends Component {
 const mapStateToProps = (state) => {
     return {
         enchantement: state.enchantementReducer.enchantement,
+        enchantements: state.enchantementReducer.enchantements,
     }
 };
 export default connect(mapStateToProps)(AddEnchantement);
