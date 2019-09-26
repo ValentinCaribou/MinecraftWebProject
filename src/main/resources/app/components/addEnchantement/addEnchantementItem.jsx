@@ -82,6 +82,31 @@ class AddEnchantementItem extends Component {
     //     }
     // }
 
+    filtrerEnchantement(enchantementPresent, unEnchantement){
+        if(enchantementPresent.id !== unEnchantement.id) {
+            if (unEnchantement.incompatible === null) {
+                return unEnchantement;
+            } else {
+                return this.chercherIncompatible(enchantementPresent, unEnchantement)
+            }
+        }
+    }
+
+    chercherIncompatible(enchantementPresent, unEnchantement) {
+        if (enchantementPresent.incompatible !== null) {
+            let nomComplet = unEnchantement.nom.split(" ");
+            let nom = nomComplet[0].toLowerCase();
+            if (nom === "bane"){
+                nom = "bane of arthropods"
+            }
+            if(unEnchantement.incompatible.includes(nom)){
+
+            } else {
+                return unEnchantement;
+            }
+        }
+    }
+
     handleSubmit() {
         let {enchantements, enchantement, enchantementAjouter} = this.state;
         let listeEnchantement;
@@ -100,15 +125,7 @@ class AddEnchantementItem extends Component {
                 console.log(this.state.EnchantementDejaPresent);
                 this.state.EnchantementDejaPresent.map(enchantementPresent => {
                     testFilter = listeEnchantement.filter(unEnchantement => {
-                        if(enchantementPresent.id !== unEnchantement.id) {
-                            if (unEnchantement.incompatible === null) {
-                                return unEnchantement;
-                            } else {
-                                if (enchantementPresent.incompatible !== null) {
-                                    return unEnchantement.incompatible.includes(enchantementPresent.incompatible)
-                                }
-                            }
-                        }
+                        return this.filtrerEnchantement(enchantementPresent, unEnchantement)
                     });
                     console.log(testFilter);
                 });
