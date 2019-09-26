@@ -84,38 +84,36 @@ class AddEnchantementItem extends Component {
 
     handleSubmit() {
         let {enchantements, enchantement, enchantementAjouter} = this.state;
+        let listeEnchantement;
+        if (enchantementAjouter.length === 0){
+            listeEnchantement = enchantements;
+        } else {
+            listeEnchantement = enchantementAjouter;
+        }
         let enchantementIncompatible = [];
         if (this.state.EnchantementVide){
             if (enchantement === undefined){
                 this.props.dispatch(balanceTonToast("error", "Veuillez saisir un enchantement valide"));
             } else {
                 this.state.EnchantementDejaPresent.push(enchantement);
-                enchantements.map((unEnchantement, index) => {
-                    let nomEnchantement = unEnchantement.nom.toLowerCase().split(" ");
-                    if (unEnchantement.id === enchantement.id){
-                        enchantements.splice(index, 1);
-                        console.log(unEnchantement.nom);
-                        // enchantementAjouter.push(enchantement);
-                    }
-                    this.state.EnchantementDejaPresent.map(EnchantementPresent => {
-                        let newEnchantementPresent = EnchantementPresent.nom.split(" ");
-                        if (newEnchantementPresent[0].includes("smite") || newEnchantementPresent[0].includes("sharpness") || newEnchantementPresent[0].includes("bane")){
-                            if (nomEnchantement[0].includes("sharpness") || nomEnchantement[0].includes("bane") || nomEnchantement[0].includes("smite")){
-                                // Faire l'inverse pour retourner la bonne liste
+                let testFilter;
+                console.log(this.state.EnchantementDejaPresent);
+                this.state.EnchantementDejaPresent.map(enchantementPresent => {
+                    testFilter = listeEnchantement.filter(unEnchantement => {
+                        if(enchantementPresent.id !== unEnchantement.id) {
+                            if (unEnchantement.incompatible === null) {
+                                return unEnchantement;
                             } else {
-                                enchantementIncompatible.push(unEnchantement);
+                                if (enchantementPresent.incompatible !== null) {
+                                    return unEnchantement.incompatible.includes(enchantementPresent.incompatible)
+                                }
                             }
                         }
                     });
+                    console.log(testFilter);
                 });
-                if (enchantementIncompatible.length !== 0){
-                    enchantementIncompatible.map(enchantement => {
-                        enchantementAjouter.push(enchantement);
-                    });
-                }
-                console.log(enchantementAjouter);
-                this.setState({enchantements: enchantementAjouter});
-                this.setState({enchantementAjouter});
+                this.setState({enchantements: testFilter});
+                this.setState({enchantementAjouter: testFilter});
                 this.props.dispatch(balanceTonToast("success", "Enchantement ajouter"));
                 this.props.onChange(enchantement);
             }
