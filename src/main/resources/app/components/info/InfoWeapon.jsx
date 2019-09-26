@@ -5,6 +5,7 @@ import InputName from "../inputs/input-name/input-name";
 import SelectInput from "../inputs/SelectInput/selectInput";
 import PointDefence from "../pointdeDefence/pointDefence";
 import PointDegat from "../pointDegat/pointDegat";
+import CraftingTable from "../craftingTable/craftingTable";
 // import {balanceTonToast} from "../../redux/toast/dispatch";
 
 const TAILLE_IMAGE_MAX = 2000000;
@@ -224,6 +225,7 @@ export class InfoWeapon extends React.Component {
                             <CancelButton callback={this.handleCancelOnClick} label="Annuler"/>
                         }
                     </div>
+                    <CraftingTable/>
                 </div>
             </>
         )
