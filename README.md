@@ -9,7 +9,7 @@ https://codepen.io/afonsopacifer/pen/dRvypR <br />
 http://www.blocksandgold.com/fr/objets-minecraft/type-utilisation/outils-armures-armes.html <br />
 https://minecraft-fr.gamepedia.com/Enchantement <br />
 https://developer.mozilla.org/fr/docs/Web/HTML/Element/embed <br />
-Table de craft HTML : https://codepen.io/Cory_/pen/ZQqqqy <br />
+Table de craft HTML : https://codepen.io/Cory_/pen/ZQqqqy, https://codepen.io/101Computing/pen/vdPoMw <br />
 
 ## Installation
 

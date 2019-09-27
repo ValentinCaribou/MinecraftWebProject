@@ -5,7 +5,7 @@ import InputName from "../inputs/input-name/input-name";
 import SelectInput from "../inputs/SelectInput/selectInput";
 import PointDefence from "../pointdeDefence/pointDefence";
 import PointDegat from "../pointDegat/pointDegat";
-import CraftingTable from "../craftingTable/craftingTable";
+import {CraftingTable} from "../craftingTable/craftingTable";
 // import {balanceTonToast} from "../../redux/toast/dispatch";
 
 const TAILLE_IMAGE_MAX = 2000000;
@@ -144,6 +144,32 @@ export class InfoWeapon extends React.Component {
     render() {
         const {creatingWeapon, verifFormatImage} = this.props;
         const {newWeapon, inEdit, isUpdated, isFormatPortrait, categorie, impair, nbCoeur} = this.state;
+        let materiaux;
+        let materiauxFinal;
+        if (newWeapon.nom !== ""){
+            let nomArme = newWeapon.nom.split(" ");
+            if (nomArme[2] !== undefined){
+                materiaux = nomArme[2].toLowerCase();
+                switch (materiaux) {
+                    case "diamant":
+                        materiauxFinal = "Diamant";
+                        break;
+                    case "fer":
+                        materiauxFinal = "Fer";
+                        break;
+                    case "or":
+                        materiauxFinal = "Or";
+                        break;
+                    case "pierre" :
+                        materiauxFinal = "Pierre";
+                        break;
+                    case "bois" :
+                        materiauxFinal = "Bois";
+                        break;
+                }
+            }
+        }
+
         return (
 
             <>
@@ -225,7 +251,12 @@ export class InfoWeapon extends React.Component {
                             <CancelButton callback={this.handleCancelOnClick} label="Annuler"/>
                         }
                     </div>
-                    <CraftingTable/>
+                    {
+                        materiauxFinal !== undefined &&
+                        <CraftingTable
+                            materiauxFinal={materiauxFinal}
+                        />
+                    }
                 </div>
             </>
         )
