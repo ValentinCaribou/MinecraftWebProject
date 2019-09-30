@@ -45,53 +45,67 @@ export class CraftingTable extends Component {
             item = Bois;
         }
         return (
-            <div className="craftingTable">
-                <div className="crafting">Craft : </div>
+            <div className="craftingZone">
+                <div className="craftingTable">
+                    <div className="crafting">Craft : </div>
 
-                <div className='grid'>
-                    <div className='grid-element'>
-                        <img className="displayed" src={Transparent}/>
+                    <div className='grid'>
+                        <div className='grid-element'>
+                            <img className="displayed" src={Transparent}/>
+                        </div>
+
+                        <div className='grid-element'>
+                            <div className="testDiv">
+                                <img className="displayed" src={item}/>
+                                <span className="tooltiptext">{materiaux}</span>
+                            </div>
+                        </div>
+
+                        <div className='grid-element'>
+                            <img className="displayed" src={Transparent}/>
+                        </div>
+
+                        <div className='grid-element'>
+                            <img className="displayed" src={Transparent}/>
+                        </div>
+
+                        <div className='grid-element'>
+                            <div className="testDiv">
+                                <img className="displayed" src={item}/>
+                                <span className="tooltiptext">{materiaux}</span>
+                            </div>
+                        </div>
+
+                        <div className='grid-element'>
+                            <img className="displayed" src={Transparent}/>
+                        </div>
+
+
+                        <div className='grid-element'>
+                            <img className="displayed" src={Transparent}/>
+                        </div>
+
+                        <div className='grid-element'>
+                            <div className="testDiv">
+                                <img className="displayed" src={Stick}/>
+                                <span className="tooltiptext">Stick</span>
+                            </div>
+                        </div>
+
+                        <div className='grid-element'>
+                            <img className="displayed" src={Transparent}/>
+                        </div>
+
                     </div>
-
-                    <div className='grid-element'>
-                        <img className="displayed" src={item}/>
+                    <div className="arrow">
+                        <i className="fa fa-arrow-right fa-3x"></i>
                     </div>
-
-                    <div className='grid-element'>
-                        <img className="displayed" src={Transparent}/>
+                    <div className='result'>
+                        <div className="testDiv">
+                            <img className="displayed" src={Sword}/>
+                            <span className="tooltiptext">Épée en {materiaux}</span>
+                        </div>
                     </div>
-
-                    <div className='grid-element'>
-                        <img className="displayed" src={Transparent}/>
-                    </div>
-
-                    <div className='grid-element'>
-                        <img className="displayed" src={item}/>
-                    </div>
-
-                    <div className='grid-element'>
-                        <img className="displayed" src={Transparent}/>
-                    </div>
-
-
-                    <div className='grid-element'>
-                        <img className="displayed" src={Transparent}/>
-                    </div>
-
-                    <div className='grid-element'>
-                        <img className="displayed" src={Stick}/>
-                    </div>
-
-                    <div className='grid-element'>
-                        <img className="displayed" src={Transparent}/>
-                    </div>
-
-                </div>
-                <div className="arrow">
-                    <i className="fa fa-arrow-right fa-3x"></i>
-                </div>
-                <div className='result'>
-                    <img className="displayed" src={Sword}/>
                 </div>
             </div>
         )
