@@ -4,6 +4,7 @@ import {AjoutButton, CancelButton, ConfirmButton, EditButton} from "../buttons/B
 import InputName from "../inputs/input-name/input-name";
 import SelectInput from "../inputs/SelectInput/selectInput";
 import PointDefence from "../pointdeDefence/pointDefence";
+import {CraftingTable} from "../craftingTable/craftingTable";
 // import {balanceTonToast} from "../../redux/toast/dispatch";
 
 const TAILLE_IMAGE_MAX = 2000000;
@@ -31,7 +32,6 @@ export class InfoArmor extends React.Component {
         if (prevProps !== this.props){
             this.setState({newArmor: {...this.props.armors}});
             let numberDamage = Number(this.props.armors.resistance) + Number(this.props.bonusResistance);
-            console.log(numberDamage);
             this.setState({resistance: numberDamage});
             this.transformeNumber(this.props.armors.pointOfDefense);
         }
@@ -140,10 +140,65 @@ export class InfoArmor extends React.Component {
         }
     };
 
+    MaterielFinal = (newArmor) => {
+        let materiaux;
+        let materiauxFinal;
+        if (newArmor.nom !== ""){
+            let nomArmure = newArmor.nom.split(" ");
+            if (nomArmure[2] !== undefined){
+                materiaux = nomArmure[2].toLowerCase();
+                switch (materiaux) {
+                    case "diamant":
+                        materiauxFinal = "Diamant";
+                        break;
+                    case "fer":
+                        materiauxFinal = "Fer";
+                        break;
+                    case "or":
+                        materiauxFinal = "Or";
+                        break;
+                    case "pierre" :
+                        materiauxFinal = "Pierre";
+                        break;
+                    case "bois" :
+                        materiauxFinal = "Bois";
+                        break;
+                }
+            }
+            if(materiauxFinal !== undefined){
+                return materiauxFinal;
+            }
+        }
+    };
+
+    craftFinal = (nomArmure, materiauxFinal) => {
+        let nomPiece = nomArmure[0].toLowerCase();
+        let craft;
+        switch(nomPiece){
+            case "casque":
+                craft = [materiauxFinal,materiauxFinal,materiauxFinal,materiauxFinal,"vide",materiauxFinal, "vide", "vide","vide"];
+                break;
+            case "plastron":
+                craft = [materiauxFinal,"vide",materiauxFinal,materiauxFinal,materiauxFinal,materiauxFinal, materiauxFinal, materiauxFinal,materiauxFinal];
+                break;
+            case "pantalon":
+                craft = [materiauxFinal,materiauxFinal,materiauxFinal,materiauxFinal,"vide",materiauxFinal, materiauxFinal, "vide",materiauxFinal];
+                break;
+            case "chaussures":
+                craft = [materiauxFinal,"vide",materiauxFinal,materiauxFinal,"vide",materiauxFinal, "vide", "vide","vide"];
+                break;
+        }
+        return craft;
+    };
+
     render() {
         const {creatingArmor, verifFormatImage} = this.props;
         const {newArmor, inEdit, isUpdated, isFormatPortrait, categorie, impair, nbArmor} = this.state;
         let resistance;
+        let nomArmure = newArmor.nom.split(" ");
+        let nomPiece = nomArmure[0].toLowerCase();
+        const materielFinal = this.MaterielFinal(newArmor);
+        const craftFinal = this.craftFinal(nomArmure, materielFinal);
         if (this.state.resistance === 0){
             resistance = this.props.armors.resistance;
         } else {
@@ -227,6 +282,15 @@ export class InfoArmor extends React.Component {
                             <CancelButton callback={this.handleCancelOnClick} label="Annuler"/>
                         }
                     </div>
+                    {
+                        craftFinal !== undefined &&
+                        <CraftingTable
+                            materiauxFinal={materielFinal}
+                            craft={craftFinal}
+                            sousType={nomPiece}
+                            nom={newArmor.nom}
+                        />
+                    }
                 </div>
             </>
         )

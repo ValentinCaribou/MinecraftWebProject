@@ -146,6 +146,7 @@ export class InfoWeapon extends React.Component {
         const {newWeapon, inEdit, isUpdated, isFormatPortrait, categorie, impair, nbCoeur} = this.state;
         let materiaux;
         let materiauxFinal;
+        let craft;
         if (newWeapon.nom !== ""){
             let nomArme = newWeapon.nom.split(" ");
             if (nomArme[2] !== undefined){
@@ -168,6 +169,7 @@ export class InfoWeapon extends React.Component {
                         break;
                 }
             }
+            craft = ["vide",materiauxFinal,"vide","vide",materiauxFinal,"vide", "vide", "Stick","Vide"];
         }
 
         return (
@@ -255,6 +257,8 @@ export class InfoWeapon extends React.Component {
                         materiauxFinal !== undefined &&
                         <CraftingTable
                             materiauxFinal={materiauxFinal}
+                            craft={craft}
+                            nom={newWeapon.nom}
                         />
                     }
                 </div>
